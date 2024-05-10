@@ -1,0 +1,15 @@
+{
+    "emailRequired": "Email is required",
+    "passwordRequired": "Password is required",
+    "invalidEmail": "Invalid email format",
+    "registrationHeader": "Registration",
+    "emailLabel": "Email address",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter password",
+    "emailPlaceholder": "Enter email",
+    "registerButton": "Register",
+    "registerNavbar": "Register",
+    "loginNavbar": "Login",
+    "searchButtonNav": "Seacrh",
+    "searchPlaceholderNav": "Seacrh"
+}

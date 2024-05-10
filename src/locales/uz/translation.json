@@ -1,0 +1,15 @@
+{
+    "emailRequired": "Pochta kerak",
+    "passwordRequired": "Elektron pochta talab qilinadi",
+    "invalidEmail": "Noto'g'ri elektron pochta formati",
+    "registrationHeader": "Roʻyxatdan oʻtish",
+    "emailLabel": "Elektron pochta manzili",
+    "passwordLabel": "Parol",
+    "passwordPlaceholder": "Parolni kiriting",
+    "emailPlaceholder": "Elektron pochtangizni kiriting",
+    "registerButton": "Ro'yxatdan o'tish",
+    "registerNavbar": "Ro'yxatdan o'tish",
+    "loginNavbar": "Kirish",
+    "searchButtonNav": "Qidiruv",
+    "searchPlaceholderNav": "Qidiruv"
+}
