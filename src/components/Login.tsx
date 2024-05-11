@@ -1,37 +1,45 @@
-import { Container, Form, Button } from 'react-bootstrap';
+import { Container, Form, Button, Alert } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useTranslation } from 'react-i18next';
-import { registerUser } from '../api/auth';
-import { setTokens } from '../service/token-service';
-import { useNavigate } from 'react-router-dom';
+import { login } from "../api/auth";
+import { setTokens } from "../service/token-service";
+import ServerResponseCode from "../enum/ServerResponseCodes";
+import { useState } from "react";
 
 interface FormInput {
   email: string;
   password: string;
 }
 
-const Registration = () => {
+const Login = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState('');
 
   const validationSchema = yup.object().shape({
-    email: yup.string().required(t('emailRequired')).email(t('invalidEmail')),
-    password: yup.string().required(t('passwordRequired'))
-  })
+    email: yup.string().required(t("emailRequired")).email(t("invalidEmail")),
+    password: yup.string().required(t("passwordRequired")),
+  });
 
-  const {register, handleSubmit, formState: {errors}} = useForm<FormInput>({
-    resolver: yupResolver(validationSchema)
-  })
+  const { register, handleSubmit, formState: { errors }} = useForm<FormInput>({
+    resolver: yupResolver(validationSchema),
+  });
 
   const onSubmit = async (formData: FormInput) => {
     try {
-      const res = await registerUser(formData);
-      setTokens(res.data)
-      navigate("/user", { replace: true });
-    } catch (e) { console.log(e) }
+        const res = await login(formData);
+        setTokens(res.data)
+        navigate("/user", { replace: true });
+    } catch (e: any) { handleErrorResponse(e) }
   };
+
+  const handleErrorResponse = (e: any) => {
+    const res = e.response?.data.message
+    res ? setErrorMessage(res) : setErrorMessage(t('unexpectedError'))
+  }
 
   return (
     <Container
@@ -42,13 +50,13 @@ const Registration = () => {
         className="border rounded px-4 py-3 m-auto shadow"
         style={{ maxWidth: "400px" }}
       >
-        <h2 className="text-center mb-4">{t('registrationHeader')}</h2>
+        <h2 className="text-center mb-4">{t("loginHeader")}</h2>
         <Form onSubmit={handleSubmit(onSubmit)} noValidate>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>{t('emailLabel')}</Form.Label>
+            <Form.Label>{t("emailLabel")}</Form.Label>
             <Form.Control
               type="email"
-              placeholder={t('emailPlaceholder')}
+              placeholder={t("emailPlaceholder")}
               isInvalid={!!errors.email}
               {...register("email")}
             />
@@ -59,10 +67,10 @@ const Registration = () => {
             )}
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>{t('passwordLabel')}</Form.Label>
+            <Form.Label>{t("passwordLabel")}</Form.Label>
             <Form.Control
               type="password"
-              placeholder={t('passwordPlaceholder')}
+              placeholder={t("passwordPlaceholder")}
               isInvalid={!!errors.password}
               {...register("password")}
             />
@@ -72,14 +80,16 @@ const Registration = () => {
               </Form.Control.Feedback>
             )}
           </Form.Group>
+          {errorMessage && (
+            <Alert variant="danger">{errorMessage}</Alert>
+          )}
           <Button variant="primary" type="submit" className="w-100">
-            {t('registerButton')}
+            {t("loginButton")}
           </Button>
         </Form>
       </Container>
     </Container>
   );
-}
+};
 
-export default Registration
-export type {FormInput}
+export default Login;

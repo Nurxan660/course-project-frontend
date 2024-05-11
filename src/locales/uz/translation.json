@@ -11,5 +11,8 @@
     "registerNavbar": "Ro'yxatdan o'tish",
     "loginNavbar": "Kirish",
     "searchButtonNav": "Qidiruv",
-    "searchPlaceholderNav": "Qidiruv"
+    "searchPlaceholderNav": "Qidiruv",
+    "loginHeader": "Kirish",
+    "loginButton": "Kirish",
+    "unexpectedError": "Kutilmagan xatolik yuz berdi, qaytadan urining."
 }

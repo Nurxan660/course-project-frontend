@@ -11,6 +11,7 @@ const LanguageDropdown = () => {
     const langName = e.split('|')
     setLanguage(langName[1])
     i18n.changeLanguage(langName[0]);
+    localStorage.setItem("lang", JSON.stringify(langName[0]))
   };
   
   return (

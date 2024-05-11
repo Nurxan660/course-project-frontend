@@ -10,6 +10,9 @@
     "registerButton": "Register",
     "registerNavbar": "Register",
     "loginNavbar": "Login",
-    "searchButtonNav": "Seacrh",
-    "searchPlaceholderNav": "Seacrh"
+    "searchButtonNav": "Search",
+    "searchPlaceholderNav": "Search",
+    "loginHeader": "Login",
+    "loginButton": "Login",
+    "unexpectedError": "Unexpected error, please try again."
 }
