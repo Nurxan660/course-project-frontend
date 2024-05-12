@@ -1,4 +1,4 @@
-import { Container, Form, Button } from 'react-bootstrap';
+import { Container, Form, Button, Alert } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { registerUser } from '../api/auth';
 import { setTokens } from '../service/token-service';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 interface FormInput {
   email: string;
@@ -15,6 +16,7 @@ interface FormInput {
 const Registration = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState('');
 
   const validationSchema = yup.object().shape({
     email: yup.string().required(t('emailRequired')).email(t('invalidEmail')),
@@ -30,8 +32,13 @@ const Registration = () => {
       const res = await registerUser(formData);
       setTokens(res.data)
       navigate("/user", { replace: true });
-    } catch (e) { console.log(e) }
+    } catch (e) { handleErrorResponse(e) }
   };
+
+  const handleErrorResponse = (e: any) => {
+    const res = e.response?.data.error
+    res ? setErrorMessage(res) : setErrorMessage(t('unexpectedError'))
+  }
 
   return (
     <Container
@@ -72,6 +79,9 @@ const Registration = () => {
               </Form.Control.Feedback>
             )}
           </Form.Group>
+          {errorMessage && (
+            <Alert variant="danger">{errorMessage}</Alert>
+          )}
           <Button variant="primary" type="submit" className="w-100">
             {t('registerButton')}
           </Button>
