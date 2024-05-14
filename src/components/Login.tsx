@@ -32,7 +32,7 @@ const Login = () => {
     try {
         const res = await login(formData);
         setTokens(res.data)
-        navigate("/user", { replace: true });
+        navigate("/collections", { replace: true });
     } catch (e: any) { handleErrorResponse(e) }
   };
 

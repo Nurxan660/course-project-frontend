@@ -14,5 +14,16 @@
     "searchPlaceholderNav": "Qidiruv",
     "loginHeader": "Kirish",
     "loginButton": "Kirish",
-    "unexpectedError": "Kutilmagan xatolik yuz berdi, qaytadan urining."
+    "unexpectedError": "Kutilmagan xatolik yuz berdi, qaytadan urining.",
+    "addCollection" : "To'plam qo'shish",
+    "nameLabel": "Ism",
+    "collectionNamePlaceholder": "To'plam nomini kiriting",
+    "categoryLabel": "Turkum",
+    "categoryPlaceholder": "Kategoriyangizni tanlang",
+    "booksCategory": "Kitoblar",
+    "signsCategory": "Belgilar",
+    "silverwareCategory": "Kumush idishlar",
+    "otherCategory": "Boshqa",
+    "imageLabel": "Rasm",
+    "fileDropdownLabel": "Fayllarni bu yerga torting yoki fayllarni tanlash uchun bosing"
 }

@@ -4,15 +4,16 @@ import LanguageDropdown from './NavbarComponents/LanguageDropdown';
 import { useTranslation } from 'react-i18next';
 import { getTokens, removeTokens } from '../service/token-service';
 import { logout } from '../api/auth';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const NavbarComponent = () => {
   const { t } = useTranslation();
-  const currentTokens = getTokens();
+  const user = getTokens();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
-      await logout(currentTokens.refreshToken);
+      await logout(user.refreshToken);
       removeTokens();
       navigate("/", { replace: true });
     } catch (e) { console.log(e) }
@@ -32,14 +33,20 @@ const NavbarComponent = () => {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link>
-              {!currentTokens && (
+            {user && (
+              <Nav.Item className="d-flex align-items-center">
+              <i className="bi bi-person-circle fs-3"></i>
+              <span className='ml-5'>{user?.email}</span>
+            </Nav.Item>
+            )}
+            <Nav.Link className='ml-5'>
+              {!user && (
                 <Link to="/register" className="custom-link">
                   {t("registerNavbar")}
                 </Link>
               )}
             </Nav.Link>
-            {!currentTokens && (
+            {!user && (
               <Nav.Link>
                 <Link to="/login" className="custom-link">
                   {t("loginNavbar")}
@@ -47,7 +54,7 @@ const NavbarComponent = () => {
               </Nav.Link>
             )}
             <LanguageDropdown />
-            {currentTokens && (
+            {user && (
               <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
             )}
           </Nav>

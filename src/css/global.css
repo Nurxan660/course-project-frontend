@@ -1,0 +1,38 @@
+html, body, #root {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.custom-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+h2 {
+    word-wrap: break-word;
+}
+
+.ml-5 {
+    margin-left: 5px;
+}
+
+.ml-10 {
+    margin-left: 10px;
+}
+
+.center-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.break-word {
+    word-wrap: break-word;
+}

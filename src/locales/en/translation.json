@@ -14,5 +14,16 @@
     "searchPlaceholderNav": "Search",
     "loginHeader": "Login",
     "loginButton": "Login",
-    "unexpectedError": "Unexpected error, please try again."
+    "unexpectedError": "Unexpected error, please try again.",
+    "addCollection": "Add Collection",
+    "nameLabel": "Name",
+    "collectionNamePlaceholder": "Enter collection name",
+    "categoryLabel": "Category",
+    "categoryPlaceholder": "Select your category",
+    "booksCategory": "Books",
+    "signsCategory": "Signs",
+    "silverwareCategory": "Silverware",
+    "otherCategory": "Other",
+    "imageLabel": "Image",
+    "fileDropdownLabel": "Drag files here or click to select files"
 }
