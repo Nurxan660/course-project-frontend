@@ -36,3 +36,23 @@ h2 {
 .break-word {
     word-wrap: break-word;
 }
+
+.container-min-height {
+    min-height: calc(100vh - 56px);
+}
+
+.mw-400 {
+    max-width: 400px;
+}
+
+.add-collection-form-container {
+    max-width: 600px;
+    margin-top: 80px;
+    margin-bottom: 20px;
+}
+
+.image-dropdown {
+    border: 2px dashed #dee2e6;
+    padding: 20px;
+    text-align: center;
+}

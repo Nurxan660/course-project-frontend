@@ -25,5 +25,8 @@
     "silverwareCategory": "Silverware",
     "otherCategory": "Other",
     "imageLabel": "Image",
-    "fileDropdownLabel": "Drag files here or click to select files"
+    "fileDropdownLabel": "Drag files here or click to select files",
+    "descriptionLabel": "Description",
+    "createButton": "Create"
+
 }

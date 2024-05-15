@@ -6,7 +6,6 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { login } from "../api/auth";
 import { setTokens } from "../service/token-service";
-import ServerResponseCode from "../enum/ServerResponseCodes";
 import { useState } from "react";
 
 interface FormInput {
@@ -42,14 +41,9 @@ const Login = () => {
   }
 
   return (
-    <Container
-      className="d-flex w-100"
-      style={{ minHeight: "calc(100vh - 56px)" }}
-    >
+    <Container className="d-flex w-100 container-min-height">
       <Container
-        className="border rounded px-4 py-3 m-auto shadow"
-        style={{ maxWidth: "400px" }}
-      >
+        className="border rounded px-4 py-3 m-auto shadow mw-400">
         <h2 className="text-center mb-4">{t("loginHeader")}</h2>
         <Form onSubmit={handleSubmit(onSubmit)} noValidate>
           <Form.Group className="mb-3" controlId="formBasicEmail">

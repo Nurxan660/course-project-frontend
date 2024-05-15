@@ -25,5 +25,7 @@
     "silverwareCategory": "Kumush idishlar",
     "otherCategory": "Boshqa",
     "imageLabel": "Rasm",
-    "fileDropdownLabel": "Fayllarni bu yerga torting yoki fayllarni tanlash uchun bosing"
+    "fileDropdownLabel": "Fayllarni bu yerga torting yoki fayllarni tanlash uchun bosing",
+    "descriptionLabel": "Tavsif",
+    "createButton": "Yaratmoq"
 }

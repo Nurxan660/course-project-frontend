@@ -19,7 +19,7 @@ const NavbarComponent = () => {
     } catch (e) { console.log(e) }
   }
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="bg-body-tertiary" fixed="top">
       <Container fluid>
         <Navbar.Brand>
           <Link to="/" className="custom-link">
