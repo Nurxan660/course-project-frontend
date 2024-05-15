@@ -7,6 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useState } from "react";
 import MDEditor from '@uiw/react-md-editor';
+import CustomFieldCreator from "./CustomFieldCreator";
 
 interface FormInput {
   name: string;
@@ -92,6 +93,10 @@ const AddCollectionForm = () => {
             )}
           </FormGroup>
           <FormGroup className="mb-3">
+            <Form.Label>{t("descriptionLabel")}</Form.Label>
+            <MDEditor value={description} onChange={handleDescriptionChange} />
+          </FormGroup>
+          <FormGroup className="mb-3">
             <Form.Label>{t("imageLabel")}</Form.Label>
             <div {...getRootProps()} className="image-dropdown">
               <input {...getInputProps()} />
@@ -102,8 +107,8 @@ const AddCollectionForm = () => {
             </aside>
           </FormGroup>
           <FormGroup className="mb-3">
-            <Form.Label>{t("descriptionLabel")}</Form.Label>
-            <MDEditor value={description} onChange={handleDescriptionChange} />
+            <Form.Label>{t("customFieldLabel")}</Form.Label>
+            <CustomFieldCreator />
           </FormGroup>
           <Button variant="primary" type="submit" className="w-100">
             {t("createButton")}

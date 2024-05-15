@@ -24,9 +24,10 @@
     "signsCategory": "Signs",
     "silverwareCategory": "Silverware",
     "otherCategory": "Other",
-    "imageLabel": "Image",
+    "imageLabel": "Image (optional)",
     "fileDropdownLabel": "Drag files here or click to select files",
     "descriptionLabel": "Description",
-    "createButton": "Create"
+    "createButton": "Create",
+    "customFieldLabel": "Custom fields (optional)"
 
 }

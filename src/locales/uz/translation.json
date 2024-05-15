@@ -24,8 +24,9 @@
     "signsCategory": "Belgilar",
     "silverwareCategory": "Kumush idishlar",
     "otherCategory": "Boshqa",
-    "imageLabel": "Rasm",
+    "imageLabel": "Rasm (ixtiyoriy)",
     "fileDropdownLabel": "Fayllarni bu yerga torting yoki fayllarni tanlash uchun bosing",
     "descriptionLabel": "Tavsif",
-    "createButton": "Yaratmoq"
+    "createButton": "Yaratmoq",
+    "customFieldLabel": "Maxsus maydonlar (ixtiyoriy)"
 }
