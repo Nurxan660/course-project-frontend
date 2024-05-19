@@ -13,4 +13,16 @@ const removeTokens = () => {
   localStorage.removeItem("user");
 };
 
-export {setTokens, getTokens, removeTokens}
+const updateAccessToken = (token: string) => {
+  const tokens = getTokens();
+  tokens.token = token;
+  localStorage.setItem("user", JSON.stringify(tokens));
+};
+
+const updateRefreshToken = (token: string) => {
+  const tokens = getTokens();
+  tokens.refreshToken = token;
+  localStorage.setItem("user", JSON.stringify(tokens));
+}
+
+export {setTokens, getTokens, removeTokens, updateAccessToken, updateRefreshToken}

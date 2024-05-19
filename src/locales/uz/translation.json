@@ -28,5 +28,7 @@
     "fileDropdownLabel": "Fayllarni bu yerga torting yoki fayllarni tanlash uchun bosing",
     "descriptionLabel": "Tavsif",
     "createButton": "Yaratmoq",
-    "customFieldLabel": "Maxsus maydonlar (ixtiyoriy)"
+    "customFieldLabel": "Maxsus maydonlar (ixtiyoriy)",
+    "sessionExpired": "Seansingiz muddati tugadi",
+    "logoutButton": "Chiqish"
 }

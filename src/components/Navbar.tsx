@@ -55,7 +55,7 @@ const NavbarComponent = () => {
             )}
             <LanguageDropdown />
             {user && (
-              <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+              <Nav.Link onClick={handleLogout}>{t("logoutButton")}</Nav.Link>
             )}
           </Nav>
           <Form className="d-flex">

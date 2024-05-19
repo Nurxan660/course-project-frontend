@@ -22,6 +22,10 @@ h2 {
     margin-left: 10px;
 }
 
+.pt-56 {
+    padding-top: 56px;
+}
+
 .center-icons {
     display: flex;
     justify-content: center;
@@ -46,8 +50,8 @@ h2 {
 }
 
 .add-collection-form-container {
-    max-width: 600px;
-    margin-top: 80px;
+    max-width: 800px;
+    margin-top: 70px;
     margin-bottom: 20px;
 }
 

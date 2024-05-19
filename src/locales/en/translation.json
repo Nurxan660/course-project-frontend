@@ -28,6 +28,8 @@
     "fileDropdownLabel": "Drag files here or click to select files",
     "descriptionLabel": "Description",
     "createButton": "Create",
-    "customFieldLabel": "Custom fields (optional)"
+    "customFieldLabel": "Custom fields (optional)",
+    "sessionExpired": "Your session has expired",
+    "logoutButton": "Logout"
 
 }

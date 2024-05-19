@@ -7,6 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { login } from "../api/auth";
 import { setTokens } from "../service/token-service";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 interface FormInput {
   email: string;
@@ -17,6 +18,9 @@ const Login = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState('');
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const sessionExpired = queryParams.get('sessionExpired') === 'true';
 
   const validationSchema = yup.object().shape({
     email: yup.string().required(t("emailRequired")).email(t("invalidEmail")),
@@ -76,6 +80,9 @@ const Login = () => {
           </Form.Group>
           {errorMessage && (
             <Alert variant="danger">{errorMessage}</Alert>
+          )}
+          {sessionExpired && (
+            <Alert variant="danger">{t("sessionExpired")}</Alert>
           )}
           <Button variant="primary" type="submit" className="w-100">
             {t("loginButton")}

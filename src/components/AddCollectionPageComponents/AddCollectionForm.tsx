@@ -1,26 +1,36 @@
-import { Container, Form, FormControl, FormGroup, Button } from "react-bootstrap"
+import { Container, Form, FormControl, FormGroup, Button, Row, Col } from "react-bootstrap"
 import { useDropzone } from "react-dropzone";
 import { uploadFile } from "../../api/file";
 import { useTranslation } from "react-i18next";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MDEditor from '@uiw/react-md-editor';
 import CustomFieldCreator from "./CustomFieldCreator";
-
-interface FormInput {
-  name: string;
-  category: string;
-}
+import { AddCollectionFormInput } from "../../types/AddCollectionFormInput";
+import { getCollections } from "../../api/collection";
+import { CollectionCategory } from "../../types/CollectionCategory";
 
 const AddCollectionForm = () => {
   const {t} = useTranslation();
   const [description, setDescription] = useState("");
+  const [categories, setCategories] = useState<CollectionCategory[]>([])
+
+  const loadCollections = async () => {
+    try {
+      const res = await getCollections()
+      setCategories(res.data)
+    } catch (e) { console.log(e) }
+  }
+
+  useEffect(() => {
+    loadCollections()
+  }, [])
 
   const upload = async (file: File) => {
     try {
-      const res = await uploadFile(file);
+      await uploadFile(file);
     } catch (e) { console.log(e) }
   }
 
@@ -29,7 +39,7 @@ const AddCollectionForm = () => {
     category: yup.string().required('category is required'),
   });
 
-  const { register, handleSubmit, formState: { errors }} = useForm<FormInput>({
+  const { register, handleSubmit, formState: { errors }} = useForm<AddCollectionFormInput>({
     resolver: yupResolver(validationSchema),
   });
 
@@ -54,10 +64,17 @@ const AddCollectionForm = () => {
 
   }
 
+  const capitalizeFirstLetter = (category: string) => {
+    if (!category) return category;
+    return category.charAt(0).toLowerCase() + category.slice(1);
+  }
+
   return (
     <Container className="d-flex w-100 container-min-height">
       <Container className="border rounded px-4 py-3 shadow add-collection-form-container">
         <Form onSubmit={handleSubmit(onSubmit)} noValidate>
+          <Row>
+            <Col>
           <FormGroup className="mb-3">
             <Form.Label>{t("nameLabel")}</Form.Label>
             <FormControl
@@ -72,6 +89,8 @@ const AddCollectionForm = () => {
               </Form.Control.Feedback>
             )}
           </FormGroup>
+          </Col>
+          <Col>
           <FormGroup className="mb-3">
             <Form.Label>{t("categoryLabel")}</Form.Label>
             <Form.Select
@@ -81,10 +100,13 @@ const AddCollectionForm = () => {
               <option value="" hidden>
                 {t("categoryPlaceholder")}
               </option>
-              <option value="Books">{t("booksCategory")}</option>
-              <option value="Signs">{t("signsCategory")}</option>
-              <option value="Silverware">{t("silverwareCategory")}</option>
-              <option value="Other">{t("otherCategory")}</option>
+              {categories.map((v) => {
+                return (
+                  <option value={v.name}>
+                    {t(`${capitalizeFirstLetter(v.name)}Category`)}
+                  </option>
+                );
+              })}
             </Form.Select>
             {errors.category && (
               <Form.Control.Feedback type="invalid">
@@ -92,6 +114,8 @@ const AddCollectionForm = () => {
               </Form.Control.Feedback>
             )}
           </FormGroup>
+          </Col>
+          </Row>
           <FormGroup className="mb-3">
             <Form.Label>{t("descriptionLabel")}</Form.Label>
             <MDEditor value={description} onChange={handleDescriptionChange} />

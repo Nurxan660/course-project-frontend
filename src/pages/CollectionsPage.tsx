@@ -5,7 +5,7 @@ import AddCollectionButton from '../components/CollectionsPageComponents/AddColl
 
 const CollectionsPage = () => {
   return (
-    <Container fluid>
+    <Container fluid className='h-100 pt-56'>
       <AddCollectionButton />
       <CollectionsTable />
     </Container>
