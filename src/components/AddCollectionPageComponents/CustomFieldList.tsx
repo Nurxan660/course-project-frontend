@@ -1,5 +1,4 @@
 import CollectionStore from "../../store/CollectionStore"
-import { FormLabel } from "react-bootstrap"
 import { observer } from "mobx-react-lite";
 
 const CustomFieldList = observer(() => {

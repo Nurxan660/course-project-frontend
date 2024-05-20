@@ -5,6 +5,7 @@ import CustomFieldList from './CustomFieldList';
 import CollectionStore from '../../store/CollectionStore';
 import { CustomField } from '../../types/CustomField';
 import { useTranslation } from 'react-i18next';
+
 const CustomFieldCreator = () => {
 
     const [name, setName] = useState('');
