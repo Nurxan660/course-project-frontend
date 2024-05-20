@@ -4,12 +4,13 @@ import React from 'react';
 import CustomFieldList from './CustomFieldList';
 import CollectionStore from '../../store/CollectionStore';
 import { CustomField } from '../../types/CustomField';
-
+import { useTranslation } from 'react-i18next';
 const CustomFieldCreator = () => {
 
     const [name, setName] = useState('');
     const [type, setType] = useState('text')
     const [error, setError] = useState('')
+    const { t } = useTranslation();
 
     const handleTypeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setType(e.target.value)
@@ -21,7 +22,7 @@ const CustomFieldCreator = () => {
 
     const validateFieldName = (fieldName: string): boolean => {
       const isValid = !!fieldName.trim();
-      setError(isValid ? '' : "Field name cannot be empty");
+      setError(isValid ? '' : t("fieldRequired"));
       return isValid;
     }
     
@@ -58,9 +59,15 @@ const CustomFieldCreator = () => {
               <Button variant="primary" onClick={handleAddButton}>
                 Add Field
               </Button>
+              {error && (
+                  <Form.Control.Feedback type="invalid">
+                    {error}
+                  </Form.Control.Feedback>
+                )}
           </InputGroup>
         </Col>
       </Row>
+      
     </Container>
   );
 }

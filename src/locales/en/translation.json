@@ -30,6 +30,7 @@
     "createButton": "Create",
     "customFieldLabel": "Custom fields (optional)",
     "sessionExpired": "Your session has expired",
-    "logoutButton": "Logout"
+    "logoutButton": "Logout",
+    "fieldRequired": "Field is required"
 
 }

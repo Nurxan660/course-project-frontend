@@ -11,5 +11,9 @@ class CollectionStore {
   setCustomFields(field: CustomField) {
     this.customFields = [...this.customFields, field]
   }
+
+  removeCustomField(index: number) {
+    this.customFields.splice(index, 1);
+  }
 }
 export default new CollectionStore

@@ -30,5 +30,6 @@
     "createButton": "Yaratmoq",
     "customFieldLabel": "Maxsus maydonlar (ixtiyoriy)",
     "sessionExpired": "Seansingiz muddati tugadi",
-    "logoutButton": "Chiqish"
+    "logoutButton": "Chiqish",
+    "fieldRequired": "Maydonni kiritish shart"
 }

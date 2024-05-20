@@ -9,12 +9,14 @@ import { useEffect, useState } from "react";
 import MDEditor from '@uiw/react-md-editor';
 import CustomFieldCreator from "./CustomFieldCreator";
 import { AddCollectionFormInput } from "../../types/AddCollectionFormInput";
-import { getCollections } from "../../api/collection";
+import { getCollections, createCollection } from "../../api/collection";
 import { CollectionCategory } from "../../types/CollectionCategory";
+import CollectionStore from "../../store/CollectionStore";
+import { FullCollectionData } from "../../types/FullCollectionData";
+import { observer } from "mobx-react-lite";
 
-const AddCollectionForm = () => {
+const AddCollectionForm = observer(() => {
   const {t} = useTranslation();
-  const [description, setDescription] = useState("");
   const [categories, setCategories] = useState<CollectionCategory[]>([])
 
   const loadCollections = async () => {
@@ -28,26 +30,26 @@ const AddCollectionForm = () => {
     loadCollections()
   }, [])
 
-  const upload = async (file: File) => {
+  const upload = async (files: File[]) => {
+    if(files.length < 0) return ''
     try {
-      await uploadFile(file);
+      const res = await uploadFile(files[0]);
+      return res.data.data.display_url;
     } catch (e) { console.log(e) }
   }
 
   const validationSchema = yup.object().shape({
-    name: yup.string().required('name is required'),
-    category: yup.string().required('category is required'),
+    name: yup.string().required(t('fieldRequired')),
+    category: yup.string().required(t('fieldRequired')),
+    description: yup.string().required(t('fieldRequired'))
   });
 
-  const { register, handleSubmit, formState: { errors }} = useForm<AddCollectionFormInput>({
+  const { register, handleSubmit, setValue, watch, formState: { errors }} = useForm<AddCollectionFormInput>({
     resolver: yupResolver(validationSchema),
   });
 
   const { getRootProps, getInputProps, acceptedFiles } = useDropzone({
-    accept: { 'image/jpeg': ['.jpeg', '.png']},
-    onDrop: async (acceptedFiles: File[]) => {
-      acceptedFiles.forEach((file: File) => upload(file));
-    }
+    accept: { 'image/jpeg': ['.jpeg', '.png']}
   });
 
   const files = acceptedFiles.map(file => (
@@ -56,13 +58,27 @@ const AddCollectionForm = () => {
     </li>
   ));
 
+  useEffect(() => {
+    register('description');
+  }, [register]);
+
   const handleDescriptionChange = (value?: string) => {
-    if (value !== undefined) setDescription(value);
+    setValue('description', value || '', { shouldValidate: true });
   };
 
-  const onSubmit = () => {
-
-  }
+  const onSubmit = async (formData: AddCollectionFormInput) => {
+    try {
+      const imageUrl = (await upload(acceptedFiles)) || "";
+      const fullData: FullCollectionData = {
+        ...formData,
+        description: 'ascaca',
+        imageUrl: imageUrl,
+        customFields: CollectionStore.customFields,
+      };
+      const res = await createCollection(fullData);
+      console.log(res.data);
+    } catch (e) {}
+  };
 
   const capitalizeFirstLetter = (category: string) => {
     if (!category) return category;
@@ -75,50 +91,59 @@ const AddCollectionForm = () => {
         <Form onSubmit={handleSubmit(onSubmit)} noValidate>
           <Row>
             <Col>
-          <FormGroup className="mb-3">
-            <Form.Label>{t("nameLabel")}</Form.Label>
-            <FormControl
-              type="text"
-              placeholder={t("collectionNamePlaceholder")}
-              isInvalid={!!errors.name}
-              {...register("name")}
-            />
-            {errors.name && (
-              <Form.Control.Feedback type="invalid">
-                {errors.name.message}
-              </Form.Control.Feedback>
-            )}
-          </FormGroup>
-          </Col>
-          <Col>
-          <FormGroup className="mb-3">
-            <Form.Label>{t("categoryLabel")}</Form.Label>
-            <Form.Select
-              isInvalid={!!errors.category}
-              {...register("category")}
-            >
-              <option value="" hidden>
-                {t("categoryPlaceholder")}
-              </option>
-              {categories.map((v) => {
-                return (
-                  <option value={v.name}>
-                    {t(`${capitalizeFirstLetter(v.name)}Category`)}
+              <FormGroup className="mb-3">
+                <Form.Label>{t("nameLabel")}</Form.Label>
+                <FormControl
+                  type="text"
+                  placeholder={t("collectionNamePlaceholder")}
+                  isInvalid={!!errors.name}
+                  {...register("name")}
+                />
+                {errors.name && (
+                  <Form.Control.Feedback type="invalid">
+                    {errors.name.message}
+                  </Form.Control.Feedback>
+                )}
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup className="mb-3">
+                <Form.Label>{t("categoryLabel")}</Form.Label>
+                <Form.Select
+                  isInvalid={!!errors.category}
+                  {...register("category")}
+                >
+                  <option value="" hidden>
+                    {t("categoryPlaceholder")}
                   </option>
-                );
-              })}
-            </Form.Select>
-            {errors.category && (
-              <Form.Control.Feedback type="invalid">
-                {errors.category.message}
-              </Form.Control.Feedback>
-            )}
-          </FormGroup>
-          </Col>
+                  {categories.map((v) => {
+                    return (
+                      <option value={v.name}>
+                        {t(`${capitalizeFirstLetter(v.name)}Category`)}
+                      </option>
+                    );
+                  })}
+                </Form.Select>
+                {errors.category && (
+                  <Form.Control.Feedback type="invalid">
+                    {errors.category.message}
+                  </Form.Control.Feedback>
+                )}
+              </FormGroup>
+            </Col>
           </Row>
           <FormGroup className="mb-3">
             <Form.Label>{t("descriptionLabel")}</Form.Label>
-            <MDEditor value={description} onChange={handleDescriptionChange} />
+            <MDEditor
+              value={watch("description")}
+              onChange={handleDescriptionChange}
+              className={errors.description ? 'description-validation' : ''}
+            />
+            {errors.description && (
+              <p className="description-validation-message">
+                {errors.description.message}
+              </p>
+            )}
           </FormGroup>
           <FormGroup className="mb-3">
             <Form.Label>{t("imageLabel")}</Form.Label>
@@ -141,6 +166,6 @@ const AddCollectionForm = () => {
       </Container>
     </Container>
   );
-}
+})
 
 export default AddCollectionForm

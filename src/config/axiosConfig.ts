@@ -39,7 +39,7 @@ axiosInstance.interceptors.response.use(
   (response) => response,
   async (err) => {
     const originalConfig = err.config;
-    if (!openApiPaths.includes(originalConfig.url) && err.response.status === 401 && !originalConfig._retry) {
+    if (!openApiPaths.includes(originalConfig.url) && err.response?.status === 401 && !originalConfig._retry) {
       originalConfig._retry = true;
       return handleRefreshToken(originalConfig);
     }
