@@ -1,4 +1,4 @@
-import { Container, Form, FormControl, FormGroup, Button, Row, Col } from "react-bootstrap"
+import { Container, Form, FormControl, FormGroup, Button, Row, Col, Spinner } from "react-bootstrap"
 import { useDropzone } from "react-dropzone";
 import { uploadFile } from "../../api/file";
 import { useTranslation } from "react-i18next";
@@ -22,6 +22,7 @@ const AddCollectionForm = observer(() => {
   const [categories, setCategories] = useState<CollectionCategory[]>([])
   const notifySuccess = (message: string) => toast.success(message);
   const notifyError = (message: string) => toast.error(message);
+  const [loading, setLoading] = useState(false)
 
   const loadCollections = async () => {
     try {
@@ -72,6 +73,7 @@ const AddCollectionForm = observer(() => {
 
   const onSubmit = async (formData: AddCollectionFormInput) => {
     try {
+      setLoading(true);
       const imageUrl = (await upload(acceptedFiles)) || "";
       const fullData: FullCollectionData = {
         ...formData,
@@ -81,6 +83,7 @@ const AddCollectionForm = observer(() => {
       const res = await createCollection(fullData);
       notifySuccess(res.data?.message)
     } catch (e) {notifyError('collectionError')}
+    setLoading(false)
   };
 
   const capitalizeFirstLetter = (category: string) => {
@@ -163,7 +166,7 @@ const AddCollectionForm = observer(() => {
             <CustomFieldCreator />
           </FormGroup>
           <Button variant="primary" type="submit" className="w-100">
-            {t("createButton")}
+            {loading ? <Spinner animation="border" /> : t("createButton") }
           </Button>
         </Form>
       </Container>
