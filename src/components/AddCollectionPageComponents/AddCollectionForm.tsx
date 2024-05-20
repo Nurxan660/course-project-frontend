@@ -14,10 +14,14 @@ import { CollectionCategory } from "../../types/CollectionCategory";
 import CollectionStore from "../../store/CollectionStore";
 import { FullCollectionData } from "../../types/FullCollectionData";
 import { observer } from "mobx-react-lite";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddCollectionForm = observer(() => {
   const {t} = useTranslation();
   const [categories, setCategories] = useState<CollectionCategory[]>([])
+  const notifySuccess = (message: string) => toast.success(message);
+  const notifyError = (message: string) => toast.error(message);
 
   const loadCollections = async () => {
     try {
@@ -31,11 +35,11 @@ const AddCollectionForm = observer(() => {
   }, [])
 
   const upload = async (files: File[]) => {
-    if(files.length < 0) return ''
+    if(files.length === 0) return ''
     try {
       const res = await uploadFile(files[0]);
       return res.data.data.display_url;
-    } catch (e) { console.log(e) }
+    } catch (e) { notifyError('imageUploadError') }
   }
 
   const validationSchema = yup.object().shape({
@@ -71,13 +75,12 @@ const AddCollectionForm = observer(() => {
       const imageUrl = (await upload(acceptedFiles)) || "";
       const fullData: FullCollectionData = {
         ...formData,
-        description: 'ascaca',
         imageUrl: imageUrl,
         customFields: CollectionStore.customFields,
       };
       const res = await createCollection(fullData);
-      console.log(res.data);
-    } catch (e) {}
+      notifySuccess(res.data?.message)
+    } catch (e) {notifyError('collectionError')}
   };
 
   const capitalizeFirstLetter = (category: string) => {
@@ -164,6 +167,7 @@ const AddCollectionForm = observer(() => {
           </Button>
         </Form>
       </Container>
+      <ToastContainer />
     </Container>
   );
 })

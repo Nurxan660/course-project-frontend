@@ -31,6 +31,8 @@
     "customFieldLabel": "Custom fields (optional)",
     "sessionExpired": "Your session has expired",
     "logoutButton": "Logout",
-    "fieldRequired": "Field is required"
+    "fieldRequired": "Field is required",
+    "collectionError": "Failed to create collection. Please try again.",
+    "imageUploadError": "Failed to load image. Please try again."
 
 }

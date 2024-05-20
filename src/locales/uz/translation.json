@@ -31,5 +31,7 @@
     "customFieldLabel": "Maxsus maydonlar (ixtiyoriy)",
     "sessionExpired": "Seansingiz muddati tugadi",
     "logoutButton": "Chiqish",
-    "fieldRequired": "Maydonni kiritish shart"
+    "fieldRequired": "Maydonni kiritish shart",
+    "collectionError": "To‘plam yaratib bo‘lmadi. Iltimos, yana bir bor urinib ko'ring.",
+    "imageUploadError": "Rasm yuklanmadi. Iltimos, yana bir bor urinib ko'ring."
 }
