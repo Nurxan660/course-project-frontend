@@ -1,6 +1,6 @@
 import { Form, FormGroup, Col, FormControl} from "react-bootstrap"
 import { useTranslation } from "react-i18next";
-import { CategorySelectProps } from "../../types/CategorySelectProps";
+import { CategorySelectProps } from "../../types/props-types/CategorySelectProps";
 
 const CategoryNameComponent = ({register, errors}: CategorySelectProps) => {
     const { t } = useTranslation();

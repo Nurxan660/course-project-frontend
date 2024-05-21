@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
-import { getCollections } from '../api/collection';
-import { CollectionCategory } from '../types/CollectionCategory';
+import { getCollectionCategories } from '../api/collection';
+import { CollectionCategory } from '../types/collection-types/CollectionCategory';
 
 export const useCollectionCategories = () => {
   const [categories, setCategories] = useState<CollectionCategory[]>([])
 
   const loadCollections = async () => {
     try {
-      const res = await getCollections();
+      const res = await getCollectionCategories();
       setCategories(res.data);
     } catch (e) { console.log(e) }
   };

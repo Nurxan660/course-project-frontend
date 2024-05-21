@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
 import CustomFieldCreator from "./CustomFieldCreator";
-import { AddCollectionFormInput } from "../../types/AddCollectionFormInput";
+import { AddCollectionFormInput } from "../../types/collection-types/AddCollectionFormInput";
 import CollectionStore from "../../store/CollectionStore";
 import { observer } from "mobx-react-lite";
 import { ToastContainer, toast } from 'react-toastify';

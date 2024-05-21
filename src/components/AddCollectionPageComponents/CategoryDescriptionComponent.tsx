@@ -1,7 +1,7 @@
 import { Form, FormGroup} from "react-bootstrap"
 import MDEditor from '@uiw/react-md-editor';
 import { useTranslation } from "react-i18next";
-import { CategoryDecriptionProps } from "../../types/CollectionDescriptionProps";
+import { CategoryDecriptionProps } from "../../types/collection-types/CollectionDescriptionProps";
 
 const CategoryDescriptionComponent = ({register, errors, watch, setValue}: CategoryDecriptionProps) => {
     const { t } = useTranslation();

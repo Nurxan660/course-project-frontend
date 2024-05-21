@@ -2,7 +2,7 @@ import { Form, FormGroup, Col} from "react-bootstrap"
 import { capitalizeFirstLetter } from "../../service/collections-service";
 import { useTranslation } from "react-i18next";
 import { useCollectionCategories } from "../../hooks/useCollectionCategories";
-import { CategorySelectProps } from "../../types/CategorySelectProps";
+import { CategorySelectProps } from "../../types/props-types/CategorySelectProps";
 
 const CategorySelectComponent = ({ register, errors }: CategorySelectProps) => {
   const { t } = useTranslation();

@@ -1,13 +1,19 @@
-import React from 'react'
 import CollectionsTable from '../components/CollectionsPageComponents/CollectionsTable'
 import { Container } from 'react-bootstrap'
 import AddCollectionButton from '../components/CollectionsPageComponents/AddCollectionButton'
+import Pagination from '../components/Common/Pagination'
+import { StoreProvider } from '../context/StoreContext'
+import DeleteModal from '../components/Common/DeleteModal'
 
 const CollectionsPage = () => {
   return (
-    <Container fluid className='h-100 pt-56'>
-      <AddCollectionButton />
-      <CollectionsTable />
+    <Container fluid className="h-100 pt-56">
+      <StoreProvider>
+        <AddCollectionButton />
+        <CollectionsTable />
+        <Pagination />
+        <DeleteModal />
+      </StoreProvider>
     </Container>
   );
 }

@@ -5,6 +5,7 @@ import CustomFieldList from './CustomFieldList';
 import CollectionStore from '../../store/CollectionStore';
 import { CustomField } from '../../types/CustomField';
 import { useTranslation } from 'react-i18next';
+import CustomFieldTypes from '../../enum/CustomFieldTypes';
 
 const CustomFieldCreator = () => {
 
@@ -53,22 +54,23 @@ const CustomFieldCreator = () => {
               value={type}
               onChange={handleTypeChange}
             >
-              <option value="text">Text</option>
-              <option value="number">Number</option>
-              <option value="date">Date</option>
+              {Object.entries(CustomFieldTypes).map(([key, value]) => (
+                <option key={key.toLowerCase()} value={key.toLowerCase()}>
+                  {value}
+                </option>
+              ))}
             </Form.Control>
-              <Button variant="primary" onClick={handleAddButton}>
-                Add Field
-              </Button>
-              {error && (
-                  <Form.Control.Feedback type="invalid">
-                    {error}
-                  </Form.Control.Feedback>
-                )}
+            <Button variant="primary" onClick={handleAddButton}>
+              Add Field
+            </Button>
+            {error && (
+              <Form.Control.Feedback type="invalid">
+                {error}
+              </Form.Control.Feedback>
+            )}
           </InputGroup>
         </Col>
       </Row>
-      
     </Container>
   );
 }

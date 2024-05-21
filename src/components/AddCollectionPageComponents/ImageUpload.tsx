@@ -1,6 +1,6 @@
 import { Form, FormGroup } from "react-bootstrap"
 import { useTranslation } from "react-i18next";
-import { ImageUploadProps } from "../../types/ImageUploadProps";
+import { ImageUploadProps } from "../../types/props-types/ImageUploadProps";
 
 const ImageUpload = ({ getRootProps, getInputProps, acceptedFiles }: ImageUploadProps) => {
     const { t } = useTranslation();

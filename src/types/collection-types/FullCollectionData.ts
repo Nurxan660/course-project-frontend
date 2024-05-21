@@ -1,4 +1,4 @@
-import { CustomField } from "./CustomField";
+import { CustomField } from "../CustomField";
 
 interface FullCollectionData {
     name: string;
