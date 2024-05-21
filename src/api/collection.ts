@@ -15,7 +15,15 @@ const createCollection = async (formData: FullCollectionData) => {
 };
 
 const getCollections = async (page: number) => {
-    return axiosInstance.get<CollectionPaginationResponse>(API_URL + `/api/collections/get?page=${page}`)
+    return axiosInstance.get<CollectionPaginationResponse>(
+      API_URL + `/api/collections/get?page=${page}`
+    );
 };
 
-export {getCollectionCategories, createCollection, getCollections}
+const deleteCollection = async (collectionId: number) => {
+    return axiosInstance.delete(
+      API_URL + `/api/collections/delete?collectionId=${collectionId}`
+    );
+};
+
+export {getCollectionCategories, createCollection, getCollections, deleteCollection}

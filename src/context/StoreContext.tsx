@@ -11,7 +11,7 @@ interface StoreProviderProps {
 
 export const StoreProvider = ({ children }: StoreProviderProps) => {
   const store = useLocalObservable(() => new PaginationStore());
-  
+
   return (
     <StoreContext.Provider value={store}>
       {children}

@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import DeleteModalStore from '../../store/DeleteModalStore';
 import { observer } from 'mobx-react-lite';
+import { Spinner } from 'react-bootstrap';
 
 const DeleteModal = observer(() => {
   return (
@@ -17,8 +18,21 @@ const DeleteModal = observer(() => {
         <p>Are you sure you want to delete?</p>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={()=>DeleteModalStore.closeModal()}>Cancel</Button>
-        <Button onClick={() => DeleteModalStore.confirmDelete()}>Delete</Button>
+        <Button
+          variant="secondary"
+          onClick={() => DeleteModalStore.closeModal()}
+        >
+          Cancel
+        </Button>
+        <Button onClick={() => DeleteModalStore.confirmDelete()} className='delete-button-flex'>
+          {DeleteModalStore.loading ? (
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          ) : (
+            "Delete"
+          )}
+        </Button>
       </Modal.Footer>
     </Modal>
   );

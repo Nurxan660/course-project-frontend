@@ -5,29 +5,30 @@ import { useEffect } from 'react';
 import CollectionStore from '../../store/CollectionStore';
 import { observer } from 'mobx-react-lite';
 import DeleteModalStore from '../../store/DeleteModalStore';
+import { ToastContainer, toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 const CollectionsTable = observer(() => {
   const store = usePaginationStore();
+  const notifySuccess = (message: string) => toast.success(message);
+  const notifyError = (message: string) => toast.error(message);
+  const { t } = useTranslation();
 
   const loadCollection = async () => {
-    try {
-      CollectionStore.setLoading(true);
-      const res = await getCollections(store?.page || 1)
-      store?.setTotalPages(res.data.totalPages);
-      CollectionStore.setCollections(res.data.collections);
-    } catch { }
-    CollectionStore.setLoading(false);
+    CollectionStore.handleLoadCollection(store, notifyError, t);
   }
 
   useEffect(() => {
     loadCollection()
-  }, [store?.page])
+  }, [store?.page, CollectionStore.isDeleted])
 
-  const deleteCollection = () => {
-    console.log("hello")
+  const handleDeleteCollection = async () => {
+    if(!store) return
+    CollectionStore.deleteCollection(notifySuccess, notifyError, t, store);
   }
 
   return (
+    <>
     <Table striped bordered hover size="sm">
       <thead>
         <tr>
@@ -53,7 +54,7 @@ const CollectionsTable = observer(() => {
               <td>{v.name}</td>
               <td>{v.category}</td>
               <td className="center-icons">
-                <i className="bi bi-trash cursor-pointer" onClick={() => DeleteModalStore.openModal(deleteCollection)}></i>
+                <i className="bi bi-trash cursor-pointer" onClick={() => DeleteModalStore.openModal(handleDeleteCollection, v.id)}></i>
                 <i className="bi bi-pencil cursor-pointer ml-10"></i>
               </td>
             </tr>
@@ -61,6 +62,8 @@ const CollectionsTable = observer(() => {
         )}
       </tbody>
     </Table>
+    <ToastContainer />
+    </>
   );
 })
 

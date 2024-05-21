@@ -85,3 +85,10 @@ h2 {
 .custom-field-delete {
     cursor: pointer;
 }
+
+.delete-button-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 37.6px;
+}

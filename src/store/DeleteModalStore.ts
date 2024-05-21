@@ -1,16 +1,18 @@
 import { makeAutoObservable } from "mobx"
-
+import CollectionStore from "./CollectionStore";
 
 class DeleteModalStore {
   showModal: boolean = false;
   onDeleteCallback: (() => void) | null = null;
+  loading: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  openModal(onDeleteCallback: () => void) {
+  openModal(onDeleteCallback: () => void, collectionId: number) {
     this.showModal = true;
+    CollectionStore.setCollectionId(collectionId)
     this.onDeleteCallback = onDeleteCallback;
   }
 
@@ -23,7 +25,10 @@ class DeleteModalStore {
     if (this.onDeleteCallback) {
       this.onDeleteCallback();
     }
-    this.closeModal();
+  }
+
+  setLoading(loading: boolean) {
+    this.loading = loading;
   }
 }
 export default new DeleteModalStore

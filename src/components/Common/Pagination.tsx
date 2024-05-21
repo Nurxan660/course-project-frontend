@@ -9,7 +9,7 @@ const Pagination = observer(() => {
     <PaginationControl
       page={store?.page}
       total={store?.totalPages || 0}
-      limit={15}
+      limit={store?.limit || 15}
       changePage={(page) => {
         store?.setPage(page)
       }}
