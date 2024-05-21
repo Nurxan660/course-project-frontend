@@ -2,6 +2,7 @@ import axios from "axios";
 import { getTokens, updateAccessToken, updateRefreshToken, removeTokens } from "../service/token-service";
 import { openApiPaths } from "../api/path/api-path";
 import { refreshToken } from "../api/auth";
+import { getCurrentLanguageCode } from "../service/utils/langUtils";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -30,7 +31,7 @@ axiosInstance.interceptors.request.use((config) => {
   const token = getTokens()?.token;
   if (token && !openApiPaths.includes(config.url || ""))
     config.headers.Authorization = `Bearer ${token}`;
-  const currentLanguage = localStorage.getItem("lang")?.replace(/['"]+/g, "");
+  const currentLanguage = getCurrentLanguageCode()?.replace(/['"]+/g, "");
   config.headers["Accept-Language"] = currentLanguage;
   return config;
 });
