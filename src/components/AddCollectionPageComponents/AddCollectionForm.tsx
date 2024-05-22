@@ -45,7 +45,7 @@ const AddCollectionForm = observer(() => {
   };
 
   return (
-    <Container className="d-flex w-100 container-min-height">
+    <Container className="d-flex w-100">
       <Container className="border rounded px-4 py-3 shadow add-collection-form-container">
         <Form onSubmit={handleSubmit(onSubmit)} noValidate>
           <Row>

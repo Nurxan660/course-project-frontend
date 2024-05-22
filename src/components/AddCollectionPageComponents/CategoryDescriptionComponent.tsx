@@ -3,7 +3,7 @@ import MDEditor from '@uiw/react-md-editor';
 import { useTranslation } from "react-i18next";
 import { CategoryDecriptionProps } from "../../types/collection-types/CollectionDescriptionProps";
 
-const CategoryDescriptionComponent = ({register, errors, watch, setValue}: CategoryDecriptionProps) => {
+const CategoryDescriptionComponent = ({errors, watch, setValue}: CategoryDecriptionProps) => {
     const { t } = useTranslation();
 
     const handleDescriptionChange = (value?: string) => {
@@ -17,6 +17,7 @@ const CategoryDescriptionComponent = ({register, errors, watch, setValue}: Categ
         value={watch("description")}
         onChange={handleDescriptionChange}
         className={errors.description ? "description-validation" : ""}
+        style={{minHeight: '150px'}}
       />
       {errors.description && (
         <p className="description-validation-message">

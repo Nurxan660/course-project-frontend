@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavDropdown } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { getCurrentLanguageName } from "../../service/utils/langUtils";
+import { getCurrentLanguageName, getCurrentLanguageCode } from "../../service/utils/langUtils";
 
 const LanguageDropdown = () => {
   const { i18n } = useTranslation();

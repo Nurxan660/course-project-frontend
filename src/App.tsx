@@ -5,8 +5,16 @@ import HomePage from "./pages/HomePage";
 import UserMainPage from "./pages/CollectionsPage";
 import Login from "./components/Login";
 import AddCollectionPage from "./pages/AddCollectionPage";
+import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
+import { getCurrentLanguageCode } from "./service/utils/langUtils";
 
 function App() {
+  const { i18n } = useTranslation()
+  useEffect(() => {
+    const currentLangCode = getCurrentLanguageCode() || 'en';
+    i18n.changeLanguage(currentLangCode);
+  }, []);
   return (
     <>
       <NavbarComponent />

@@ -7,7 +7,7 @@ import DeleteModal from '../components/Common/DeleteModal'
 
 const CollectionsPage = () => {
   return (
-    <Container fluid className="h-100 pt-56">
+    <Container fluid>
       <StoreProvider>
         <AddCollectionButton />
         <CollectionsTable />

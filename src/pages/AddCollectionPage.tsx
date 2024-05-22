@@ -1,10 +1,14 @@
-import React from 'react'
-import AddCollectionForm from '../components/AddCollectionPageComponents/AddCollectionForm'
+import React from "react";
+import AddCollectionForm from "../components/AddCollectionPageComponents/AddCollectionForm";
+import AddCollectionNavigation from "../components/AddCollectionPageComponents/AddCollectionNavigation";
 
 const AddCollectionPage = () => {
   return (
-    <AddCollectionForm />
-  )
-}
+    <>
+      <AddCollectionNavigation />
+      <AddCollectionForm />
+    </>
+  );
+};
 
-export default AddCollectionPage
+export default AddCollectionPage;

@@ -5,6 +5,10 @@ html, body, #root {
     padding: 0;
 }
 
+#root {
+    padding-top: 60px;
+}
+
 .custom-link {
     text-decoration: none;
     color: inherit;
@@ -20,10 +24,6 @@ h2 {
 
 .ml-10 {
     margin-left: 10px;
-}
-
-.pt-56 {
-    padding-top: 56px;
 }
 
 .description-validation-message {
@@ -54,17 +54,12 @@ h2 {
     word-wrap: break-word;
 }
 
-.container-min-height {
-    min-height: calc(100vh - 56px);
-}
-
 .mw-400 {
     max-width: 400px;
 }
 
 .add-collection-form-container {
     max-width: 800px;
-    margin-top: 70px;
     margin-bottom: 20px;
 }
 
@@ -91,4 +86,9 @@ h2 {
     align-items: center;
     justify-content: center;
     height: 37.6px;
+}
+
+.breadcrumb {
+    margin-bottom: 5px;
+    margin-left: 15px;
 }
