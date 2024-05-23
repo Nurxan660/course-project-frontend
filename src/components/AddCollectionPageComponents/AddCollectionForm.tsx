@@ -1,48 +1,38 @@
 import { Container, Form, FormGroup, Button, Row, Spinner } from "react-bootstrap"
 import { useTranslation } from "react-i18next";
-import { useForm } from 'react-hook-form';
+import { useForm} from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import CustomFieldCreator from "./CustomFieldCreator";
 import { AddCollectionFormInput } from "../../types/collection-types/AddCollectionFormInput";
-import CollectionStore from "../../store/CollectionStore";
-import { observer } from "mobx-react-lite";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { createCollection } from "../../api/collection";
-import { useFileUpload } from "../../hooks/useFileUpload";
-import { getFullData } from "../../service/collections-service";
 import { createCollectionSchema } from "../../service/validations/collectionValidations";
 import CategorySelectComponent from "./CategorySelectComponent";
 import CategoryNameComponent from "./CategoryNameComponent";
 import CategoryDescriptionComponent from "./CategoryDescriptionComponent";
 import ImageUpload from "./ImageUpload";
+import { CollectionFormProps } from "../../types/props-types/CollectionFormProps";
+import { useCollectionFormStore } from "../../context/CollectionFormContext";
+import { observer } from "mobx-react-lite";
 
-const AddCollectionForm = observer(() => {
+const AddCollectionForm = observer(({getRootProps, getInputProps, acceptedFiles, onSubmit, loading, isEdit, defaultValues}: CollectionFormProps) => {
   const {t} = useTranslation();
-  const notifySuccess = (message: string) => toast.success(message);
-  const notifyError = (message: string) => toast.error(message);
-  const [loading, setLoading] = useState(false)
-  const {getRootProps, getInputProps, acceptedFiles, upload} = useFileUpload();
-
-  const { register, handleSubmit, setValue, watch, formState: { errors }} = useForm<AddCollectionFormInput>({
+  const store = useCollectionFormStore();
+  const { register, handleSubmit, setValue, watch, reset, formState: { errors }} = useForm<AddCollectionFormInput>({
     resolver: yupResolver(createCollectionSchema(t)),
+    
   });
+
+  useEffect(() => {
+    if (store?.defaultValues) {
+      reset(store.defaultValues);
+    }
+  }, [store?.defaultValues]);
 
   useEffect(() => {
     register('description');
   }, [register]);
 
-  const onSubmit = async (formData: AddCollectionFormInput) => {
-    try {
-      setLoading(true);
-      const imageUrl = (await upload(acceptedFiles)) || "";
-      const fullData = getFullData(formData, imageUrl, CollectionStore.customFields)
-      const res = await createCollection(fullData);
-      notifySuccess(res.data?.message)
-    } catch (e) {notifyError('collectionError')}
-    setLoading(false)
-  };
 
   return (
     <Container className="d-flex w-100">
@@ -72,7 +62,6 @@ const AddCollectionForm = observer(() => {
           </Button>
         </Form>
       </Container>
-      <ToastContainer />
     </Container>
   );
 })

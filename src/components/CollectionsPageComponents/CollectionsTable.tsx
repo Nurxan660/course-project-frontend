@@ -1,12 +1,12 @@
 import { Table, Spinner } from 'react-bootstrap'
-import { getCollections } from '../../api/collection';
 import { usePaginationStore } from '../../context/StoreContext';
 import { useEffect } from 'react';
-import CollectionStore from '../../store/CollectionStore';
+import CollectionStore from '../../store/DeleteCollectionStore';
 import { observer } from 'mobx-react-lite';
 import DeleteModalStore from '../../store/DeleteModalStore';
 import { ToastContainer, toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 const CollectionsTable = observer(() => {
   const store = usePaginationStore();
@@ -55,7 +55,7 @@ const CollectionsTable = observer(() => {
               <td>{v.category}</td>
               <td className="center-icons">
                 <i className="bi bi-trash cursor-pointer" onClick={() => DeleteModalStore.openModal(handleDeleteCollection, v.id)}></i>
-                <i className="bi bi-pencil cursor-pointer ml-10"></i>
+                <Link to={`/collections/edit/${v.id}`} style={{color: 'black'}}><i className="bi bi-pencil cursor-pointer ml-10"></i></Link>
               </td>
             </tr>
           ))

@@ -8,7 +8,8 @@ import AddCollectionPage from "./pages/AddCollectionPage";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import { getCurrentLanguageCode } from "./service/utils/langUtils";
-
+import EditCollectionPage from "./pages/EditCollectionPage";
+import { CollectionFormStoreProvider } from "./context/CollectionFormContext";
 function App() {
   const { i18n } = useTranslation()
   useEffect(() => {
@@ -24,6 +25,11 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/collections" element={<UserMainPage />} />
         <Route path="/collections/add" element={<AddCollectionPage />} />
+        <Route path="/collections/edit/:id" element={
+        <CollectionFormStoreProvider>
+          <EditCollectionPage />
+        </CollectionFormStoreProvider>
+      } />
       </Routes>
     </>
   );

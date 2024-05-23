@@ -33,5 +33,8 @@
     "logoutButton": "Chiqish",
     "fieldRequired": "Maydonni kiritish shart",
     "collectionError": "To‘plam yaratib bo‘lmadi. Iltimos, yana bir bor urinib ko'ring.",
-    "imageUploadError": "Rasm yuklanmadi. Iltimos, yana bir bor urinib ko'ring."
+    "imageUploadError": "Rasm yuklanmadi. Iltimos, yana bir bor urinib ko'ring.",
+    "collectionsNavigationName": "To'plamlar", 
+    "addCollectionNavigationName": "To'plam qo'shing",
+    "editCollectionNavigationName": "To'plamni tahrirlash"
 }

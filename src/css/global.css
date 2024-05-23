@@ -92,3 +92,7 @@ h2 {
     margin-bottom: 5px;
     margin-left: 15px;
 }
+
+.container-min-height {
+    height: 100%;
+}

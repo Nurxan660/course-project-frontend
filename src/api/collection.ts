@@ -26,4 +26,10 @@ const deleteCollection = async (collectionId: number) => {
     );
 };
 
-export {getCollectionCategories, createCollection, getCollections, deleteCollection}
+const getCollection = async (collectionId: number) => {
+  return axiosInstance.get<FullCollectionData>(
+    API_URL + `/api/collections/get/collection?collectionId=${collectionId}`
+  );
+};
+
+export {getCollectionCategories, createCollection, getCollections, deleteCollection, getCollection}

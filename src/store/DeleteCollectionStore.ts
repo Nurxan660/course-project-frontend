@@ -11,7 +11,6 @@ import PaginationStore from "./PaginationStore";
 import { CollectionPaginationResponse } from "../types/collection-types/CollectionPaginationResponse";
 
 class CollectionStore {
-  customFields: CustomField[] = [];
   collections: Collection[] = [];
   loading: boolean = true;
   collectionId: number | null = null;
@@ -19,14 +18,6 @@ class CollectionStore {
 
   constructor() {
     makeAutoObservable(this);
-  }
-
-  setCustomFields(field: CustomField) {
-    this.customFields = [...this.customFields, field];
-  }
-
-  removeCustomField(index: number) {
-    this.customFields.splice(index, 1);
   }
 
   setCollections(collections: Collection[]) {

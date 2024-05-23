@@ -33,6 +33,9 @@
     "logoutButton": "Logout",
     "fieldRequired": "Field is required",
     "collectionError": "Failed to create collection. Please try again.",
-    "imageUploadError": "Failed to load image. Please try again."
+    "imageUploadError": "Failed to load image. Please try again.",
+    "collectionsNavigationName": "Collections", 
+    "addCollectionNavigationName": "Add collection",
+    "editCollectionNavigationName": "Edit collection"
 
 }

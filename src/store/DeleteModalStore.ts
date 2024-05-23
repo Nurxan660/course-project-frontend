@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx"
-import CollectionStore from "./CollectionStore";
+import CollectionStore from "./DeleteCollectionStore";
 
 class DeleteModalStore {
   showModal: boolean = false;

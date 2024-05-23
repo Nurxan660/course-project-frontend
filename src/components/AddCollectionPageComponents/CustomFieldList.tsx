@@ -1,13 +1,15 @@
-import CollectionStore from "../../store/CollectionStore"
 import { observer } from "mobx-react-lite";
+import { useCollectionFormStore } from "../../context/CollectionFormContext";
 
 const CustomFieldList = observer(() => {
+  const store = useCollectionFormStore();
+
   const handleDeleteField = (index: number) => {
-    CollectionStore.removeCustomField(index)
+    store?.removeCustomField(index)
   }
   return (
     <>
-      {CollectionStore.customFields.map((v, index) => {
+      {store?.customFields?.map((v, index) => {
         return (
           <div key={index} className="d-inline-block mb-2">
             <div className='d-flex justify-content-center align-items-center custom-field-element'>
