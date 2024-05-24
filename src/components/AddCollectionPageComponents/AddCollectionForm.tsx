@@ -15,7 +15,7 @@ import { CollectionFormProps } from "../../types/props-types/CollectionFormProps
 import { useCollectionFormStore } from "../../context/CollectionFormContext";
 import { observer } from "mobx-react-lite";
 
-const AddCollectionForm = observer(({getRootProps, getInputProps, acceptedFiles, onSubmit, loading, isEdit, defaultValues}: CollectionFormProps) => {
+const AddCollectionForm = observer(({getRootProps, getInputProps, acceptedFiles, onSubmit, loading}: CollectionFormProps) => {
   const {t} = useTranslation();
   const store = useCollectionFormStore();
   const { register, handleSubmit, setValue, watch, reset, formState: { errors }} = useForm<AddCollectionFormInput>({

@@ -7,7 +7,6 @@ import { getFullData } from "../service/collections-service";
 import { createCollection } from "../api/collection";
 import { ToastContainer, toast } from 'react-toastify';
 import { useCollectionFormStore } from "../context/CollectionFormContext";
-import { CollectionFormStoreProvider } from "../context/CollectionFormContext";
 
 const AddCollectionPage = () => {
   const store = useCollectionFormStore();
@@ -29,7 +28,6 @@ const AddCollectionPage = () => {
   return (
     <>
       <AddCollectionNavigation isEdit={false} />
-      <CollectionFormStoreProvider>
         <AddCollectionForm
           getRootProps={getRootProps}
           getInputProps={getInputProps}
@@ -38,7 +36,6 @@ const AddCollectionPage = () => {
           loading={loading}
           isEdit={false}
         />
-      </CollectionFormStoreProvider>
       <ToastContainer />
     </>
   );

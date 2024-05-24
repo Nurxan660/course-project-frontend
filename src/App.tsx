@@ -24,7 +24,11 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/collections" element={<UserMainPage />} />
-        <Route path="/collections/add" element={<AddCollectionPage />} />
+        <Route path="/collections/add" element={
+        <CollectionFormStoreProvider>
+          <AddCollectionPage />
+        </CollectionFormStoreProvider>
+      } />
         <Route path="/collections/edit/:id" element={
         <CollectionFormStoreProvider>
           <EditCollectionPage />

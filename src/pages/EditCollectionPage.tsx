@@ -10,12 +10,13 @@ import { FullCollectionData } from "../types/collection-types/FullCollectionData
 import CollectionFormStore from "../store/CollectionFormStore";
 import { CollectionFormStoreProvider } from "../context/CollectionFormContext";
 import { useCollectionFormStore } from "../context/CollectionFormContext";
+import { editCollection } from "../api/collection";
+import { getFullData } from "../service/collections-service";
 
 const EditCollectionPage = () => {
   const store = useCollectionFormStore();
   const { getRootProps, getInputProps, acceptedFiles, upload } = useFileUpload();
   const [loading, setLoading] = useState(false);
-  const [defaultValues, setDefaultValues] = useState<FullCollectionData>();
   const notifySuccess = (message: string) => toast.success(message);
   const notifyError = (message: string) => toast.error(message);
   const params = useParams();
@@ -32,7 +33,16 @@ const EditCollectionPage = () => {
     loadCollection();
   }, []);
 
-  const onSubmit = (formData: AddCollectionFormInput) => {};
+  const onSubmit = async (formData: AddCollectionFormInput) => {
+    try {
+    setLoading(true);
+      const imageUrl = (await upload(acceptedFiles)) || "";
+      const fullData = getFullData(formData, imageUrl, store?.customFields || [])
+      const res = await editCollection(fullData, Number(params.id));
+      notifySuccess(res.data?.message);
+    } catch (e) {notifyError('collectionError')}
+    setLoading(false)
+  };
 
   return (
     <>
@@ -44,7 +54,6 @@ const EditCollectionPage = () => {
           onSubmit={onSubmit}
           loading={loading}
           isEdit={true}
-          defaultValues={defaultValues}
         />
       <ToastContainer />
     </>

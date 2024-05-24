@@ -32,4 +32,15 @@ const getCollection = async (collectionId: number) => {
   );
 };
 
-export {getCollectionCategories, createCollection, getCollections, deleteCollection, getCollection}
+const editCollection = async (formData: FullCollectionData, collectionId: number) => {
+  return axiosInstance.put(API_URL + `/api/collections/edit?collectionId=${collectionId}`, {...formData})
+};
+
+export {
+  getCollectionCategories,
+  createCollection,
+  getCollections,
+  deleteCollection,
+  getCollection,
+  editCollection
+};
