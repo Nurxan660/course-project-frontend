@@ -81,6 +81,14 @@ h2 {
     cursor: pointer;
 }
 
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.color-black {
+    color: black
+}
+
 .delete-button-flex {
     display: flex;
     align-items: center;

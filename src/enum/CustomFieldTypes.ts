@@ -1,7 +1,9 @@
 enum CustomFieldTypes {
-    TEXT = 'Text',
-    NUMBER = 'Number',
-    DATE = 'Date'
+    TEXT = 'text',
+    NUMBER = 'number',
+    DATE = 'date',
+    TEXTAREA = 'textarea',
+    CHECKBOX = 'checkbox'
 }
 
 export default CustomFieldTypes;

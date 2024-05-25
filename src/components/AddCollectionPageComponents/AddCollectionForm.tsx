@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { useForm} from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect} from "react";
-import CustomFieldCreator from "./CustomFieldCreator";
 import { AddCollectionFormInput } from "../../types/collection-types/AddCollectionFormInput";
 import 'react-toastify/dist/ReactToastify.css';
 import { createCollectionSchema } from "../../service/validations/collectionValidations";
@@ -14,8 +13,9 @@ import ImageUpload from "./ImageUpload";
 import { CollectionFormProps } from "../../types/props-types/CollectionFormProps";
 import { useCollectionFormStore } from "../../context/CollectionFormContext";
 import { observer } from "mobx-react-lite";
+import CustomFieldList from "./CustomFieldList";
 
-const AddCollectionForm = observer(({getRootProps, getInputProps, acceptedFiles, onSubmit, loading}: CollectionFormProps) => {
+const AddCollectionForm = observer(({getRootProps, getInputProps, acceptedFiles, onSubmit, loading, isEdit}: CollectionFormProps) => {
   const {t} = useTranslation();
   const store = useCollectionFormStore();
   const { register, handleSubmit, setValue, watch, reset, formState: { errors }} = useForm<AddCollectionFormInput>({
@@ -55,10 +55,11 @@ const AddCollectionForm = observer(({getRootProps, getInputProps, acceptedFiles,
           />
           <FormGroup className="mb-3">
             <Form.Label>{t("customFieldLabel")}</Form.Label>
-            <CustomFieldCreator />
+            <Button className="ml-10" onClick={() => store?.setIsCustomFieldModalOpen(true)}>Add custom field</Button>
           </FormGroup>
+          <CustomFieldList />
           <Button variant="primary" type="submit" className="w-100">
-            {loading ? <Spinner animation="border" /> : t("createButton")}
+            {loading ? <Spinner animation="border" /> : isEdit ? t("editButton") : t("createButton")}
           </Button>
         </Form>
       </Container>

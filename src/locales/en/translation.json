@@ -28,6 +28,7 @@
     "fileDropdownLabel": "Drag files here or click to select files",
     "descriptionLabel": "Description",
     "createButton": "Create",
+    "editButton": "Edit",
     "customFieldLabel": "Custom fields (optional)",
     "sessionExpired": "Your session has expired",
     "logoutButton": "Logout",
@@ -36,6 +37,6 @@
     "imageUploadError": "Failed to load image. Please try again.",
     "collectionsNavigationName": "Collections", 
     "addCollectionNavigationName": "Add collection",
-    "editCollectionNavigationName": "Edit collection"
-
+    "editCollectionNavigationName": "Edit collection",
+    "addItemButton": "Add item"
 }

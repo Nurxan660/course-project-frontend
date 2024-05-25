@@ -7,6 +7,7 @@ import { getFullData } from "../service/collections-service";
 import { createCollection } from "../api/collection";
 import { ToastContainer, toast } from 'react-toastify';
 import { useCollectionFormStore } from "../context/CollectionFormContext";
+import CustomFieldModal from "../components/AddCollectionPageComponents/CustomFieldModal";
 
 const AddCollectionPage = () => {
   const store = useCollectionFormStore();
@@ -36,6 +37,7 @@ const AddCollectionPage = () => {
           loading={loading}
           isEdit={false}
         />
+        <CustomFieldModal />
       <ToastContainer />
     </>
   );

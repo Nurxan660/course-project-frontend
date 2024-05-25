@@ -6,12 +6,10 @@ import AddCollectionForm from "../components/AddCollectionPageComponents/AddColl
 import { AddCollectionFormInput } from "../types/collection-types/AddCollectionFormInput";
 import { getCollection } from "../api/collection";
 import { useParams } from "react-router-dom";
-import { FullCollectionData } from "../types/collection-types/FullCollectionData";
-import CollectionFormStore from "../store/CollectionFormStore";
-import { CollectionFormStoreProvider } from "../context/CollectionFormContext";
 import { useCollectionFormStore } from "../context/CollectionFormContext";
 import { editCollection } from "../api/collection";
 import { getFullData } from "../service/collections-service";
+import CustomFieldModal from "../components/AddCollectionPageComponents/CustomFieldModal";
 
 const EditCollectionPage = () => {
   const store = useCollectionFormStore();
@@ -47,14 +45,15 @@ const EditCollectionPage = () => {
   return (
     <>
       <AddCollectionNavigation isEdit={true} />
-        <AddCollectionForm
-          getRootProps={getRootProps}
-          getInputProps={getInputProps}
-          acceptedFiles={acceptedFiles}
-          onSubmit={onSubmit}
-          loading={loading}
-          isEdit={true}
-        />
+      <AddCollectionForm
+        getRootProps={getRootProps}
+        getInputProps={getInputProps}
+        acceptedFiles={acceptedFiles}
+        onSubmit={onSubmit}
+        loading={loading}
+        isEdit={true}
+      />
+      <CustomFieldModal />
       <ToastContainer />
     </>
   );

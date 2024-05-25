@@ -1,27 +1,47 @@
 import { observer } from "mobx-react-lite";
 import { useCollectionFormStore } from "../../context/CollectionFormContext";
+import Table from 'react-bootstrap/Table';
 
 const CustomFieldList = observer(() => {
   const store = useCollectionFormStore();
 
   const handleDeleteField = (index: number) => {
-    store?.removeCustomField(index)
-  }
+    store?.removeCustomField(index);
+  };
   return (
     <>
-      {store?.customFields?.map((v, index) => {
-        return (
-          <div key={index} className="d-inline-block mb-2">
-            <div className='d-flex justify-content-center align-items-center custom-field-element'>
-            <span>{v.name} ({v.type})</span>
-            <i className="bi bi-x-circle ml-5 custom-field-delete" onClick={() => handleDeleteField(index)}></i>
-            </div>
-          </div>
-        );
-      })}
+    {store?.customFields.length || 0 > 0 ? (
+    <div style={{ overflowY: 'auto', maxHeight: '200px' }}>
+      <Table striped bordered hover size="sm">
+        <thead>
+          <tr>
+            <th>№</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Required</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {store?.customFields?.map((v, index) => {
+            return (
+              <tr>
+                <td>{index + 1}</td>
+                <td>{v.name}</td>
+                <td>{v.type}</td>
+                <td>{String(v.isRequired)}</td>
+                <td className="center-icons">
+                    <i className="bi bi-trash cursor-pointer" onClick={() => handleDeleteField(index)}></i>
+                  </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </Table>
+    </div>
+    ) : <></>}
     </>
   );
 });
 
-
-export default CustomFieldList
+export default CustomFieldList;

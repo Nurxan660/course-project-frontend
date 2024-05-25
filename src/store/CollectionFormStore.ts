@@ -5,6 +5,7 @@ import { FullCollectionData } from "../types/collection-types/FullCollectionData
 class CollectionFormStore {
   customFields: CustomField[] = [];
   defaultValues: FullCollectionData = this.getDefaultValues();
+  isCustomFieldModalOpen: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -20,6 +21,10 @@ class CollectionFormStore {
 
   setDefaultValues(value: FullCollectionData) {
     this.defaultValues = value;
+  }
+
+  setIsCustomFieldModalOpen(isOpen: boolean) {
+    this.isCustomFieldModalOpen = isOpen;
   }
 
   removeCustomField(index: number) {

@@ -28,6 +28,7 @@
     "fileDropdownLabel": "Fayllarni bu yerga torting yoki fayllarni tanlash uchun bosing",
     "descriptionLabel": "Tavsif",
     "createButton": "Yaratmoq",
+    "editButton": "Tahrirlash",
     "customFieldLabel": "Maxsus maydonlar (ixtiyoriy)",
     "sessionExpired": "Seansingiz muddati tugadi",
     "logoutButton": "Chiqish",
@@ -36,5 +37,6 @@
     "imageUploadError": "Rasm yuklanmadi. Iltimos, yana bir bor urinib ko'ring.",
     "collectionsNavigationName": "To'plamlar", 
     "addCollectionNavigationName": "To'plam qo'shing",
-    "editCollectionNavigationName": "To'plamni tahrirlash"
+    "editCollectionNavigationName": "To'plamni tahrirlash",
+    "addItemButton": "Element qo'shish"
 }

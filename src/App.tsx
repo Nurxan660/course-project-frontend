@@ -10,6 +10,9 @@ import { useEffect } from "react";
 import { getCurrentLanguageCode } from "./service/utils/langUtils";
 import EditCollectionPage from "./pages/EditCollectionPage";
 import { CollectionFormStoreProvider } from "./context/CollectionFormContext";
+import CollectionItemsPage from "./pages/CollectionItemsPage";
+import AddItemPage from "./pages/AddItemPage";
+
 function App() {
   const { i18n } = useTranslation()
   useEffect(() => {
@@ -24,6 +27,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/collections" element={<UserMainPage />} />
+        <Route path="/collections/:id" element={<CollectionItemsPage />} />
+        <Route path="/collections/:id/add-item" element={<AddItemPage />} />
         <Route path="/collections/add" element={
         <CollectionFormStoreProvider>
           <AddCollectionPage />

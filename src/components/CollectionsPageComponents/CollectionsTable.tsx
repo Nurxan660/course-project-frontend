@@ -29,40 +29,57 @@ const CollectionsTable = observer(() => {
 
   return (
     <>
-    <Table striped bordered hover size="sm">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Category</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        {CollectionStore.loading ? (
+      <Table striped bordered hover size="sm">
+        <thead>
           <tr>
-            <td colSpan={3}>
-              <div className="d-flex justify-content-center align-items-center" style={{ height: '60vh' }}>
-                <Spinner animation="border" role="status">
-                  <span className="visually-hidden">Loading...</span>
-                </Spinner>
-              </div>
-            </td>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Action</th>
           </tr>
-        ) : (
-          CollectionStore.collections.map((v) => (
-            <tr key={v.id}>
-              <td>{v.name}</td>
-              <td>{v.category}</td>
-              <td className="center-icons">
-                <i className="bi bi-trash cursor-pointer" onClick={() => DeleteModalStore.openModal(handleDeleteCollection, v.id)}></i>
-                <Link to={`/collections/edit/${v.id}`} style={{color: 'black'}}><i className="bi bi-pencil cursor-pointer ml-10"></i></Link>
+        </thead>
+        <tbody>
+          {CollectionStore.loading ? (
+            <tr>
+              <td colSpan={3}>
+                <div
+                  className="d-flex justify-content-center align-items-center"
+                  style={{ height: "60vh" }}
+                >
+                  <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                </div>
               </td>
             </tr>
-          ))
-        )}
-      </tbody>
-    </Table>
-    <ToastContainer />
+          ) : (
+            CollectionStore.collections.map((v) => (
+                <tr key={v.id}>
+                  <td className="cursor-pointer">
+                  <Link to={`/collections/${v.id}`} className='color-black'>
+                    <span>{v.name}</span>
+                    </Link>
+                    </td>
+                  <td>{v.category}</td>
+                  <td className="center-icons">
+                    <i
+                      className="bi bi-trash cursor-pointer"
+                      onClick={() =>
+                        DeleteModalStore.openModal(handleDeleteCollection, v.id)
+                      }
+                    ></i>
+                    <Link
+                      to={`/collections/edit/${v.id}`}
+                      style={{ color: "black" }}
+                    >
+                      <i className="bi bi-pencil cursor-pointer ml-10"></i>
+                    </Link>
+                  </td>
+                </tr>
+            ))
+          )}
+        </tbody>
+      </Table>
+      <ToastContainer />
     </>
   );
 })
