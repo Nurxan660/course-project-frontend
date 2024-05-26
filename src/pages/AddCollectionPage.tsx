@@ -3,7 +3,7 @@ import AddCollectionNavigation from "../components/AddCollectionPageComponents/A
 import { useFileUpload } from "../hooks/useFileUpload";
 import { AddCollectionFormInput } from "../types/collection-types/AddCollectionFormInput";
 import { useState } from "react";
-import { getFullData } from "../service/collections-service";
+import { getFullData } from "../service/utils/collectionUtils";
 import { createCollection } from "../api/collection";
 import { ToastContainer, toast } from 'react-toastify';
 import { useCollectionFormStore } from "../context/CollectionFormContext";
@@ -23,7 +23,7 @@ const AddCollectionPage = () => {
       const fullData = getFullData(formData, imageUrl, store?.customFields || [])
       const res = await createCollection(fullData);
       notifySuccess(res.data?.message)
-    } catch (e) {notifyError('collectionError')}
+    } catch (e) { notifyError('collectionError') }
     setLoading(false)
   };
   return (

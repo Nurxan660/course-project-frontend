@@ -38,5 +38,8 @@
     "collectionsNavigationName": "To'plamlar", 
     "addCollectionNavigationName": "To'plam qo'shing",
     "editCollectionNavigationName": "To'plamni tahrirlash",
+    "itemsNavigationName": "Elementlar", 
+    "addItemNavigationName": "Element qo'shish",
+    "editItemNavigationName": "Elementni tahrirlash",
     "addItemButton": "Element qo'shish"
 }

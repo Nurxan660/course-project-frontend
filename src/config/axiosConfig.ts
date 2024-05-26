@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getTokens, updateAccessToken, updateRefreshToken, removeTokens } from "../service/token-service";
+import { getTokens, updateAccessToken, updateRefreshToken, removeTokens } from "../service/utils/tokenUtils";
 import { openApiPaths } from "../api/path/api-path";
 import { refreshToken } from "../api/auth";
 import { getCurrentLanguageCode } from "../service/utils/langUtils";

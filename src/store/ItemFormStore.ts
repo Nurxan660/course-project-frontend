@@ -3,6 +3,8 @@ import { CustomField } from "../types/CustomField";
 
 class ItemFormStore {
   customFields: CustomField[] = [];
+  loading: boolean = false;
+  isEdit: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -11,5 +13,9 @@ class ItemFormStore {
   setCustomFields(fields: CustomField[]) {
     this.customFields = fields;
   }
+
+  setLoading(loading: boolean) {
+    this.loading = loading;
+  }
 }
-export default new ItemFormStore
+export default ItemFormStore

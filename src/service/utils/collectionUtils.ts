@@ -1,5 +1,5 @@
-import { AddCollectionFormInput } from "../types/collection-types/AddCollectionFormInput";
-import { CustomField } from "../types/CustomField";
+import { AddCollectionFormInput } from "../../types/collection-types/AddCollectionFormInput";
+import { CustomField } from "../../types/CustomField";
 
 const capitalizeFirstLetter = (category: string) => {
   if (!category) return category;

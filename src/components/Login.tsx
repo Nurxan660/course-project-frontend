@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { login } from "../api/auth";
-import { setTokens } from "../service/token-service";
+import { setTokens } from "../service/utils/tokenUtils";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 

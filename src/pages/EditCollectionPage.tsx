@@ -8,7 +8,7 @@ import { getCollection } from "../api/collection";
 import { useParams } from "react-router-dom";
 import { useCollectionFormStore } from "../context/CollectionFormContext";
 import { editCollection } from "../api/collection";
-import { getFullData } from "../service/collections-service";
+import { getFullData } from "../service/utils/collectionUtils";
 import CustomFieldModal from "../components/AddCollectionPageComponents/CustomFieldModal";
 
 const EditCollectionPage = () => {

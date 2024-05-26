@@ -1,4 +1,4 @@
-import { UserData } from "../api/auth"
+import { UserData } from "../../api/auth"
 
 const setTokens = (token: UserData) => {
     localStorage.setItem("user", JSON.stringify(token))

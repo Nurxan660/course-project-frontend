@@ -12,6 +12,7 @@ import EditCollectionPage from "./pages/EditCollectionPage";
 import { CollectionFormStoreProvider } from "./context/CollectionFormContext";
 import CollectionItemsPage from "./pages/CollectionItemsPage";
 import AddItemPage from "./pages/AddItemPage";
+import { ItemFormStoreProvider } from "./context/ItemFormContext";
 
 function App() {
   const { i18n } = useTranslation()
@@ -28,17 +29,30 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/collections" element={<UserMainPage />} />
         <Route path="/collections/:id" element={<CollectionItemsPage />} />
-        <Route path="/collections/:id/add-item" element={<AddItemPage />} />
-        <Route path="/collections/add" element={
-        <CollectionFormStoreProvider>
-          <AddCollectionPage />
-        </CollectionFormStoreProvider>
-      } />
-        <Route path="/collections/edit/:id" element={
-        <CollectionFormStoreProvider>
-          <EditCollectionPage />
-        </CollectionFormStoreProvider>
-      } />
+        <Route
+          path="/collections/add"
+          element={
+            <CollectionFormStoreProvider>
+              <AddCollectionPage />
+            </CollectionFormStoreProvider>
+          }
+        />
+        <Route
+          path="/collections/:id/add-item"
+          element={
+            <ItemFormStoreProvider>
+              <AddItemPage />
+            </ItemFormStoreProvider>
+          }
+        />
+        <Route
+          path="/collections/edit/:id"
+          element={
+            <CollectionFormStoreProvider>
+              <EditCollectionPage />
+            </CollectionFormStoreProvider>
+          }
+        />
       </Routes>
     </>
   );

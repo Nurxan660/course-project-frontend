@@ -1,5 +1,5 @@
 import { Form, FormGroup, Col} from "react-bootstrap"
-import { capitalizeFirstLetter } from "../../service/collections-service";
+import { capitalizeFirstLetter } from "../../service/utils/collectionUtils";
 import { useTranslation } from "react-i18next";
 import { useCollectionCategories } from "../../hooks/useCollectionCategories";
 import { CategorySelectProps } from "../../types/props-types/CategorySelectProps";

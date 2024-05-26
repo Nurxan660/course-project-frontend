@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useTranslation } from 'react-i18next';
 import { registerUser } from '../api/auth';
-import { setTokens } from '../service/token-service';
+import { setTokens } from '../service/utils/tokenUtils';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 

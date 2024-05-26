@@ -38,5 +38,8 @@
     "collectionsNavigationName": "Collections", 
     "addCollectionNavigationName": "Add collection",
     "editCollectionNavigationName": "Edit collection",
+    "itemsNavigationName": "Items", 
+    "addItemNavigationName": "Add item",
+    "editItemNavigationName": "Edit item",
     "addItemButton": "Add item"
 }
