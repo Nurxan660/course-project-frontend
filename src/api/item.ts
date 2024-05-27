@@ -15,4 +15,10 @@ const getItemListWithCollection = async (collectionId: number, page: number) => 
     );
 };
 
-export { createItem, getItemListWithCollection };
+const deleteItem = async (ids: number[]) => {
+  return axiosInstance.post<MessageApiResponse>(
+    API_URL + `/api/item/delete`, {ids}
+  );
+};
+
+export { createItem, getItemListWithCollection, deleteItem};

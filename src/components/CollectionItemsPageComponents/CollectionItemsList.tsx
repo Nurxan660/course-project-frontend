@@ -5,7 +5,9 @@ import { useEffect } from 'react';
 import ItemListStore from '../../store/ItemListStore';
 import { usePaginationStore } from '../../context/StoreContext';
 import { observer } from 'mobx-react-lite';
-import { Spinner } from 'react-bootstrap';
+import { Spinner, Form } from 'react-bootstrap';
+import DeleteItemStore from '../../store/DeleteItemStore';
+
 const CollectionItemsList = observer(() => {
   const params = useParams();
   const store = usePaginationStore();
@@ -22,24 +24,29 @@ const CollectionItemsList = observer(() => {
 
   useEffect(() => {
     loadItems();
-  }, [store?.page])
+  }, [store?.page, DeleteItemStore.isDeleted])
 
   return (
     <div className="mt-4">
       <Table striped bordered hover size="sm">
         <thead>
-          <tr>
+          <tr className="text-center align-middle">
+          <th>
+              <Form.Check
+                onClick={() => ItemListStore.handleCheckAll()}
+              />
+            </th>
             <th>№</th>
             <th>Name</th>
             {ItemListStore.items.customFieldNames.map((v) => {
-              return <th>{v}</th>;
+              return <th key={v}>{v}</th>;
             })}
           </tr>
         </thead>
         <tbody>
           {ItemListStore.loading ? (
             <tr>
-              <td colSpan={3}>
+              <td colSpan={3 + ItemListStore.items.customFieldNames.length}>
                 <div
                   className="d-flex justify-content-center align-items-center"
                   style={{ height: "60vh" }}
@@ -53,11 +60,17 @@ const CollectionItemsList = observer(() => {
           ) : (
             ItemListStore.items.items.map((v, index) => {
               return (
-                <tr>
+                <tr key={v.itemId}>
+                  <td className="text-center align-middle">
+                    <Form.Check
+                      checked={ItemListStore.checkedItems.includes(v.itemId)}
+                      onChange={() => ItemListStore.handleCheckChange(v.itemId)}
+                    />
+                  </td>
                   <td>{index + 1}</td>
                   <td>{v.itemName}</td>
-                  {v.customFieldValues.map((v) => {
-                    return <td>{v}</td>;
+                  {v.customFieldValues.map((v, index) => {
+                    return <td key={index}>{v}</td>;
                   })}
                 </tr>
               );

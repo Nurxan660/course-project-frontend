@@ -16,6 +16,11 @@ class DeleteModalStore {
     this.onDeleteCallback = onDeleteCallback;
   }
 
+  openModalForDeleteItem(onDeleteCallback: () => void) {
+    this.showModal = true;
+    this.onDeleteCallback = onDeleteCallback;
+  }
+
   closeModal() {
     this.showModal = false;
     this.onDeleteCallback = null;

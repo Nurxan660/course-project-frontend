@@ -3,6 +3,8 @@ import CollectionItemsList from '../components/CollectionItemsPageComponents/Col
 import AddItemsButton from '../components/CollectionItemsPageComponents/AddItemsButton'
 import Pagination from '../components/Common/Pagination'
 import { StoreProvider } from '../context/StoreContext'
+import DeleteItemsButton from '../components/CollectionItemsPageComponents/DeleteItemsButton'
+import DeleteModal from '../components/Common/DeleteModal'
 
 const CollectionItemsPage = () => {
   return (
@@ -10,8 +12,10 @@ const CollectionItemsPage = () => {
       <StoreProvider>
         <CollectionCard />
         <AddItemsButton />
+        <DeleteItemsButton />
         <CollectionItemsList />
         <Pagination />
+        <DeleteModal />
       </StoreProvider>
     </div>
   );

@@ -56,7 +56,7 @@ class CollectionStore {
     this.adjustCurrentPageAfterDeletion(store);
   }
 
-  private handleSuccessDelete(
+  handleSuccessDelete(
     res: AxiosResponse<any, any>,
     notifySuccess: (message: string) => Id
   ) {
@@ -93,7 +93,7 @@ class CollectionStore {
     this.setCollections(res.data.collections);
   }
 
-  private adjustCurrentPageAfterDeletion(store: PaginationStore) {
+  adjustCurrentPageAfterDeletion(store: PaginationStore) {
     if (store.page > 1 && store.totalPages % store.limit === 1) {
       store.setPage(store.page - 1);
     }

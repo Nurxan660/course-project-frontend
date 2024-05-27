@@ -3,18 +3,35 @@ import { CollectionWithItemsResponse } from "../types/item-types/CollectionWithI
 
 class ItemListStore {
   items: CollectionWithItemsResponse = {
-    name: '', 
-    categoryName: '', 
-    description: '', 
-    imageUrl: '', 
+    name: "",
+    categoryName: "",
+    description: "",
+    imageUrl: "",
     items: [],
     customFieldNames: [],
-    totalPages: 0
+    totalPages: 0,
   };
   loading: boolean = false;
- 
+  checkedItems: number[] = [];
+
   constructor() {
     makeAutoObservable(this);
+  }
+
+  handleCheckChange = (itemId: number) => {
+    if (this.checkedItems.includes(itemId)) {
+      this.checkedItems = this.checkedItems.filter((id) => id !== itemId);
+    } else {
+      this.checkedItems.push(itemId);
+    }
+  }
+
+  handleCheckAll = () => {
+    if (this.checkedItems.length === this.items.items.length) {
+      this.checkedItems = [];
+    } else {
+      this.checkedItems = this.items.items.map((item) => item.itemId);
+    }
   }
 
   setItems(items: CollectionWithItemsResponse) {
