@@ -7,6 +7,7 @@ const customFieldValidation = (t: TFunction<"translation", undefined>) =>
     name: yup.string().required(t("fieldRequired")),
     type: yup.mixed<CustomFieldTypes>().required("fieldRequired"),
     isRequired: yup.boolean().required(t("fieldRequired")),
+    showInTable: yup.boolean().required(t("fieldRequired")),
 });
 
 export {customFieldValidation}

@@ -5,5 +5,6 @@ interface CustomField {
     name: string;
     type: CustomFieldTypes;
     isRequired: boolean;
+    showInTable: boolean;
 }
 export type {CustomField}

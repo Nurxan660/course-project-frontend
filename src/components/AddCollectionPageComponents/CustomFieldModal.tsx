@@ -65,6 +65,7 @@ const CustomFieldModal = observer(() => {
         )}
           </Form.Group>
           <Form.Check label="Required" {...register("isRequired")}/>
+          <Form.Check label="Show in table" {...register("showInTable")}/>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={() => store?.setIsCustomFieldModalOpen(false)}>Close</Button>

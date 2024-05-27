@@ -19,6 +19,7 @@ const CustomFieldList = observer(() => {
             <th>Name</th>
             <th>Type</th>
             <th>Required</th>
+            <th>Show in table</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -30,6 +31,7 @@ const CustomFieldList = observer(() => {
                 <td>{v.name}</td>
                 <td>{v.type}</td>
                 <td>{String(v.isRequired)}</td>
+                <td>{String(v.showInTable)}</td>
                 <td className="center-icons">
                     <i className="bi bi-trash cursor-pointer" onClick={() => handleDeleteField(index)}></i>
                   </td>
