@@ -1,18 +1,22 @@
 import { makeAutoObservable } from "mobx"
-import { CollectionWithItemsResponse } from "../types/item-types/CollectionWithItemsResponse";
+import { PaginationItemListResponse } from "../types/item-types/PaginationItemListResponse";
+import { BasicCollectionData } from "../types/collection-types/BasicCollectionData";
 
 class ItemListStore {
-  items: CollectionWithItemsResponse = {
-    name: "",
-    categoryName: "",
-    description: "",
-    imageUrl: "",
+  items: PaginationItemListResponse = {
     items: [],
     customFieldNames: [],
     totalPages: 0,
   };
   loading: boolean = false;
   checkedItems: number[] = [];
+  collection: BasicCollectionData = {
+    id: 0,
+    name: '',
+    category: '',
+    description: '',
+    imageUrl: '',
+  };
 
   constructor() {
     makeAutoObservable(this);
@@ -24,7 +28,7 @@ class ItemListStore {
     } else {
       this.checkedItems.push(itemId);
     }
-  }
+  };
 
   handleCheckAll = () => {
     if (this.checkedItems.length === this.items.items.length) {
@@ -32,10 +36,14 @@ class ItemListStore {
     } else {
       this.checkedItems = this.items.items.map((item) => item.itemId);
     }
+  };
+
+  setItems(items: PaginationItemListResponse) {
+    this.items = items;
   }
 
-  setItems(items: CollectionWithItemsResponse) {
-    this.items = items;
+  setCollection(collection: BasicCollectionData) {
+    this.collection = collection;
   }
 
   setLoading(loading: boolean) {

@@ -4,7 +4,7 @@ import { CustomField } from "../types/CustomField";
 class ItemFormStore {
   customFields: CustomField[] = [];
   loading: boolean = false;
-  isEdit: boolean = false;
+  defaultValues: any;
 
   constructor() {
     makeAutoObservable(this);
@@ -12,6 +12,10 @@ class ItemFormStore {
 
   setCustomFields(fields: CustomField[]) {
     this.customFields = fields;
+  }
+
+  setDefaultValues(values: any) {
+    this.defaultValues = values;
   }
 
   setLoading(loading: boolean) {

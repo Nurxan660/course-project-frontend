@@ -1,9 +1,8 @@
 import { UseFormRegister, FieldErrors } from "react-hook-form";
-import { FieldValues } from "react-hook-form";
 
 interface DynamicFormProps {
-  register: UseFormRegister<FieldValues>;
-  errors: FieldErrors<FieldValues>;
+  register: UseFormRegister<any>;
+  errors: FieldErrors<any>;
 }
 
 export type {DynamicFormProps}

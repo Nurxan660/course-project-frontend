@@ -1,5 +1,5 @@
 import Table from 'react-bootstrap/Table';
-import { getItemListWithCollection } from '../../api/item';
+import { getItemList } from '../../api/item';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import ItemListStore from '../../store/ItemListStore';
@@ -7,6 +7,8 @@ import { usePaginationStore } from '../../context/StoreContext';
 import { observer } from 'mobx-react-lite';
 import { Spinner, Form } from 'react-bootstrap';
 import DeleteItemStore from '../../store/DeleteItemStore';
+import { Link } from 'react-router-dom';
+import { getCollectionBasic } from '../../api/collection';
 
 const CollectionItemsList = observer(() => {
   const params = useParams();
@@ -15,9 +17,11 @@ const CollectionItemsList = observer(() => {
   const loadItems = async () => {
     ItemListStore.setLoading(true);
     try {
-      const res = await getItemListWithCollection(Number(params.id), store?.page || 1)
-      ItemListStore.setItems(res.data);
-      store?.setTotalPages(res.data.totalPages)
+      const itemList = await getItemList(Number(params.id), store?.page || 1)
+      const collection = await getCollectionBasic(Number(params.id))
+      ItemListStore.setItems(itemList.data);
+      ItemListStore.setCollection(collection.data)
+      store?.setTotalPages(itemList.data.totalPages)
     } catch (e) {  }
     ItemListStore.setLoading(false);
   }
@@ -72,6 +76,14 @@ const CollectionItemsList = observer(() => {
                   {v.customFieldValues.map((v, index) => {
                     return <td key={index}>{v}</td>;
                   })}
+                  <td className="center-icons">
+                    <Link
+                      to={`/collections/${params.id}/edit-item/${v.itemId}`}
+                      style={{ color: "black" }}
+                    >
+                      <i className="bi bi-pencil cursor-pointer ml-10"></i>
+                    </Link>
+                  </td>
                 </tr>
               );
             })

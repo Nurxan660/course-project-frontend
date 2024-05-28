@@ -7,4 +7,10 @@ const getCollectionCustomFields = async (collectionId: number) => {
     return axiosInstance.get<CustomField[]>(API_URL + `/api/customFields/get?collectionId=${collectionId}`)
 };
 
-export { getCollectionCustomFields };
+const getCustomFieldWithValue = async (itemId: number) => {
+    return axiosInstance.get(
+      API_URL + `/api/customFields/get/values?itemId=${itemId}`
+    );
+};
+
+export { getCollectionCustomFields, getCustomFieldWithValue };

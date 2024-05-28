@@ -3,12 +3,13 @@ import { useItemFormStore } from '../context/ItemFormContext'
 import { getCollectionCustomFields } from '../api/custom_field'
 import { useParams } from 'react-router-dom'
 import ItemForm from '../components/ItemFormPageComponents/ItemForm'
-import { transformItemCreateData } from '../service/utils/itemUtils'
-import { createItem } from '../api/item'
 import { ToastContainer, toast } from 'react-toastify';
 import ItemFormNavigation from '../components/ItemFormPageComponents/ItemFormNavigation'
+import { getCustomFieldWithValue } from '../api/custom_field'
+import { transformItemEditData } from '../service/utils/itemUtils'
+import { editItem } from '../api/item'
 
-const AddItemPage = () => {
+const EditItemPage = () => {
   const store = useItemFormStore();
   const params = useParams();
   const notifySuccess = (message: string) => toast.success(message);
@@ -17,7 +18,9 @@ const AddItemPage = () => {
   const loadCustomFields = async () => {
     try {
       const res = await getCollectionCustomFields(Number(params.id));
-      store?.setCustomFields(res.data)
+      const customFieldWithValue = await getCustomFieldWithValue(Number(params.itemId));
+      store?.setCustomFields(res.data);
+      store?.setDefaultValues(customFieldWithValue.data);
     } catch (e) { }
   }
 
@@ -27,21 +30,20 @@ const AddItemPage = () => {
 
   const onSubmit = async (data: any) => {
     store?.setLoading(true);
-    const transformedData = transformItemCreateData(data, Number(params.id));
     try {
-      const res = await createItem(transformedData);
-      notifySuccess(res.data.message)
-    } catch (e: any) { notifyError(e?.response?.data?.message) }
+      const res = await editItem(Number(params.itemId), transformItemEditData(data));
+      notifySuccess(res.data.message);
+    } catch (e) {  }
     store?.setLoading(false);
   };
 
   return (
     <>
-    <ItemFormNavigation isEdit={false}/>
-    <ItemForm onSubmit={onSubmit} isEdit={false}/>
+    <ItemFormNavigation isEdit={true}/>
+    <ItemForm onSubmit={onSubmit} isEdit={true}/>
     <ToastContainer />
     </>
   )
 }
 
-export default AddItemPage
+export default EditItemPage

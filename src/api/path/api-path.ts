@@ -1,4 +1,4 @@
 export const openApiPaths = [
-    "/api/login-check",
+    "/api/login_check",
     "/api/token/refresh"
   ];

@@ -22,7 +22,7 @@ const NavbarComponent = () => {
     <Navbar expand="lg" className="bg-body-tertiary" fixed="top">
       <Container fluid>
         <Navbar.Brand>
-          <Link to="/" className="custom-link">
+          <Link to="/collections" className="custom-link">
             MyCollections
           </Link>
         </Navbar.Brand>
