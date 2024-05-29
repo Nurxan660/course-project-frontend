@@ -27,9 +27,13 @@ function handleFailedRefresh() {
   window.location.replace("/login?sessionExpired=true");
 }
 
+function isOpenApiPath(url: string) {
+  return openApiPaths.some(path => url.startsWith(path)) || url.startsWith("/open-api");
+}
+
 axiosInstance.interceptors.request.use((config) => {
   const token = getTokens()?.token;
-  if (token && !openApiPaths.includes(config.url || ""))
+  if (token && !isOpenApiPath(config.url || ""))
     config.headers.Authorization = `Bearer ${token}`;
   const currentLanguage = getCurrentLanguageCode()?.replace(/['"]+/g, "");
   config.headers["Accept-Language"] = currentLanguage;
@@ -39,10 +43,11 @@ axiosInstance.interceptors.request.use((config) => {
 axiosInstance.interceptors.response.use(
   (response) => response,
   async (err) => {
-    const originalConfig = err.config;
-    if (!openApiPaths.includes(originalConfig.url) && err.response?.status === 401 && !originalConfig._retry) {
-      originalConfig._retry = true;
-      return handleRefreshToken(originalConfig);
+    const config = err.config;
+    const token = getTokens()?.token;
+    if (token && !isOpenApiPath(config.url) && err.response?.status === 401 && !config._retry) {
+      config._retry = true;
+      return handleRefreshToken(config);
     }
   return Promise.reject(err);
 }

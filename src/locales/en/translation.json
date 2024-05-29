@@ -1,12 +1,15 @@
 {
     "emailRequired": "Email is required",
     "passwordRequired": "Password is required",
+    "fullNameRequired": "Full name is required",
     "invalidEmail": "Invalid email format",
     "registrationHeader": "Registration",
     "emailLabel": "Email address",
+    "fullNameLabel": "Full name",
     "passwordLabel": "Password",
     "passwordPlaceholder": "Enter password",
     "emailPlaceholder": "Enter email",
+    "fullNamePlaceholder": "Enter full name",
     "registerButton": "Register",
     "registerNavbar": "Register",
     "loginNavbar": "Login",
@@ -41,5 +44,15 @@
     "itemsNavigationName": "Items", 
     "addItemNavigationName": "Add item",
     "editItemNavigationName": "Edit item",
-    "addItemButton": "Add item"
+    "addItemButton": "Add item",
+    "largestCollectionHeader": "Largest collections",
+    "numberOfItemsTitle": "Number of items:",
+    "openCollectionButton": "Open collection",
+    "lastAddedItemsLabel": "Last items",
+    "collectionLabel": "Collection",
+    "authorLabel": "Author",
+    "openItemButton": "Open item"
+
+
+
 }

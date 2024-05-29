@@ -3,6 +3,7 @@ import { CollectionCategory } from "../types/collection-types/CollectionCategory
 import { FullCollectionData } from "../types/collection-types/FullCollectionData";
 import { CollectionPaginationResponse } from "../types/collection-types/CollectionPaginationResponse";
 import { BasicCollectionData } from "../types/collection-types/BasicCollectionData";
+import { LargestCollections } from "../types/collection-types/LargestCollections";
 
 const API_URL = process.env.REACT_APP_URL || '';
 
@@ -35,12 +36,18 @@ const getCollection = async (collectionId: number) => {
 
 const getCollectionBasic = async (collectionId: number) => {
   return axiosInstance.get<BasicCollectionData>(
-    API_URL + `/api/collections/get/collection/basic?collectionId=${collectionId}`
+    API_URL + `/open-api/collections/get/collection/basic?collectionId=${collectionId}`
   );
 };
 
 const editCollection = async (formData: FullCollectionData, collectionId: number) => {
   return axiosInstance.put(API_URL + `/api/collections/edit?collectionId=${collectionId}`, {...formData})
+};
+
+const getLargestCollections = async () => {
+  return axiosInstance.get<LargestCollections[]>(
+    API_URL + `/open-api/collections/get`
+  );
 };
 
 export {
@@ -50,5 +57,6 @@ export {
   deleteCollection,
   getCollection,
   editCollection,
-  getCollectionBasic
+  getCollectionBasic,
+  getLargestCollections
 };

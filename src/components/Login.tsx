@@ -1,4 +1,4 @@
-import { Container, Form, Button, Alert } from "react-bootstrap";
+import { Container, Form, Button, Alert, Spinner } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
@@ -9,7 +9,7 @@ import { setTokens } from "../service/utils/tokenUtils";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
-interface FormInput {
+interface LoginFormInput {
   email: string;
   password: string;
 }
@@ -18,6 +18,7 @@ const Login = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const sessionExpired = queryParams.get('sessionExpired') === 'true';
@@ -27,21 +28,23 @@ const Login = () => {
     password: yup.string().required(t("passwordRequired")),
   });
 
-  const { register, handleSubmit, formState: { errors }} = useForm<FormInput>({
+  const { register, handleSubmit, formState: { errors }} = useForm<LoginFormInput>({
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit = async (formData: FormInput) => {
+  const onSubmit = async (formData: LoginFormInput) => {
     try {
-        const res = await login(formData);
-        setTokens(res.data)
-        navigate("/collections", { replace: true });
+      setLoading(true);
+      const res = await login(formData);
+      setTokens(res.data);
+      navigate("/collections", { replace: true });
     } catch (e: any) { handleErrorResponse(e) }
   };
 
   const handleErrorResponse = (e: any) => {
     const res = e.response?.data.message
     res ? setErrorMessage(res) : setErrorMessage(t('unexpectedError'))
+    setLoading(false);
   }
 
   return (
@@ -84,8 +87,8 @@ const Login = () => {
           {sessionExpired && (
             <Alert variant="danger">{t("sessionExpired")}</Alert>
           )}
-          <Button variant="primary" type="submit" className="w-100">
-            {t("loginButton")}
+          <Button variant="primary" type="submit" className="w-100" disabled={loading}>
+            {loading ? <Spinner animation="border" /> : t("loginButton")}
           </Button>
         </Form>
       </Container>
@@ -94,3 +97,4 @@ const Login = () => {
 };
 
 export default Login;
+export type { LoginFormInput };

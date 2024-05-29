@@ -9,10 +9,14 @@ import { Spinner, Form } from 'react-bootstrap';
 import DeleteItemStore from '../../store/DeleteItemStore';
 import { Link } from 'react-router-dom';
 import { getCollectionBasic } from '../../api/collection';
+import { getTokens } from '../../service/utils/tokenUtils';
+import TableHeaders from './TableHeaders';
+import TableSpinner from './TableSpinner';
 
 const CollectionItemsList = observer(() => {
   const params = useParams();
   const store = usePaginationStore();
+  const currentUser = getTokens();
 
   const loadItems = async () => {
     ItemListStore.setLoading(true);
@@ -33,44 +37,24 @@ const CollectionItemsList = observer(() => {
   return (
     <div className="mt-4">
       <Table striped bordered hover size="sm">
-        <thead>
-          <tr className="text-center align-middle">
-          <th>
-              <Form.Check
-                onClick={() => ItemListStore.handleCheckAll()}
-              />
-            </th>
-            <th>№</th>
-            <th>Name</th>
-            {ItemListStore.items.customFieldNames.map((v) => {
-              return <th key={v}>{v}</th>;
-            })}
-          </tr>
-        </thead>
+        <TableHeaders />
         <tbody>
           {ItemListStore.loading ? (
-            <tr>
-              <td colSpan={3 + ItemListStore.items.customFieldNames.length}>
-                <div
-                  className="d-flex justify-content-center align-items-center"
-                  style={{ height: "60vh" }}
-                >
-                  <Spinner animation="border" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                  </Spinner>
-                </div>
-              </td>
-            </tr>
+            <TableSpinner />
           ) : (
             ItemListStore.items.items.map((v, index) => {
               return (
                 <tr key={v.itemId}>
-                  <td className="text-center align-middle">
-                    <Form.Check
-                      checked={ItemListStore.checkedItems.includes(v.itemId)}
-                      onChange={() => ItemListStore.handleCheckChange(v.itemId)}
-                    />
-                  </td>
+                  {currentUser && (
+                    <td className="text-center align-middle">
+                      <Form.Check
+                        checked={ItemListStore.checkedItems.includes(v.itemId)}
+                        onChange={() =>
+                          ItemListStore.handleCheckChange(v.itemId)
+                        }
+                      />
+                    </td>
+                  )}
                   <td>{index + 1}</td>
                   <td>
                     <Link to={`/collections/${params.id}/item/${v.itemId}`}>
@@ -87,14 +71,16 @@ const CollectionItemsList = observer(() => {
                   }).map((_, index) => (
                     <td key={`placeholder-${index}`}></td>
                   ))}
-                  <td className="center-icons">
-                    <Link
-                      to={`/collections/${params.id}/edit-item/${v.itemId}`}
-                      style={{ color: "black" }}
-                    >
-                      <i className="bi bi-pencil cursor-pointer ml-10"></i>
-                    </Link>
-                  </td>
+                  {currentUser && (
+                    <td className="center-icons">
+                      <Link
+                        to={`/collections/${params.id}/edit-item/${v.itemId}`}
+                        style={{ color: "black" }}
+                      >
+                        <i className="bi bi-pencil cursor-pointer ml-10"></i>
+                      </Link>
+                    </td>
+                  )}
                 </tr>
               );
             })

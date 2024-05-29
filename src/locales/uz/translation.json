@@ -1,11 +1,14 @@
 {
     "emailRequired": "Pochta kerak",
     "passwordRequired": "Elektron pochta talab qilinadi",
+    "fullNameRequired": "To'liq ism talab qilinadi",
     "invalidEmail": "Noto'g'ri elektron pochta formati",
     "registrationHeader": "Roʻyxatdan oʻtish",
     "emailLabel": "Elektron pochta manzili",
+    "fullNameLabel": "To'liq ism",
     "passwordLabel": "Parol",
     "passwordPlaceholder": "Parolni kiriting",
+    "fullNamePlaceholder": "To'liq ismni kiriting",
     "emailPlaceholder": "Elektron pochtangizni kiriting",
     "registerButton": "Ro'yxatdan o'tish",
     "registerNavbar": "Ro'yxatdan o'tish",
@@ -41,5 +44,12 @@
     "itemsNavigationName": "Elementlar", 
     "addItemNavigationName": "Element qo'shish",
     "editItemNavigationName": "Elementni tahrirlash",
-    "addItemButton": "Element qo'shish"
+    "addItemButton": "Element qo'shish",
+    "largestCollectionHeader": "Eng katta kolleksiyalar",
+    "numberOfItemsTitle": "Elementlar soni:",
+    "openCollectionButton": "Ochiq kolleksiya",
+    "lastAddedItemsLabel": "Eng so'nggi qo'shimchalar",
+    "collectionLabel": "To'plam",
+    "authorLabel": "Muallif",
+    "openItemButton": "Ochiq element"
 }

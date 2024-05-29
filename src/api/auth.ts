@@ -1,17 +1,18 @@
 import axios from "axios";
-import { FormInput } from "../components/Registration";
+import { RegFormInput } from "../components/Registration";
 import axiosInstance from "../config/axiosConfig";
 import { Token } from "../types/Token";
+import { LoginFormInput } from "../components/Login";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 interface UserData {
   token: string;
   refreshToken: string;
-  email: string;
+  fullName: string;
 }
 
-const registerUser = async (regData: FormInput) => {
+const registerUser = async (regData: RegFormInput) => {
   return axiosInstance.post<UserData>('/register', regData);
 };
 
@@ -23,7 +24,7 @@ const refreshToken = async (refreshToken: string) => {
   return axios.post<Token>(API_URL + '/api/token/refresh', {refreshToken});
 };
 
-const login = async (loginData: FormInput) => {
+const login = async (loginData: LoginFormInput) => {
   return axiosInstance.post<UserData>('/api/login_check', loginData);
 };
 

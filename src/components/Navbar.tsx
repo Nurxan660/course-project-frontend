@@ -36,7 +36,7 @@ const NavbarComponent = () => {
             {user && (
               <Nav.Item className="d-flex align-items-center">
               <i className="bi bi-person-circle fs-3"></i>
-              <span className='ml-5'>{user?.email}</span>
+              <span className='ml-5'>{user?.fullName}</span>
             </Nav.Item>
             )}
             <Nav.Link className='ml-5'>
