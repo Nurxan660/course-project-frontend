@@ -14,6 +14,10 @@ html, body, #root {
     color: inherit;
 }
 
+.h-100 {
+    height: 100%;
+}
+
 h2 {
     word-wrap: break-word;
 }

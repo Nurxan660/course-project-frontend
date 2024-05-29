@@ -9,7 +9,7 @@ const ItemFormButton = observer(({isEdit}: ItemFormNavigationProps) => {
   const { t } = useTranslation();
   return (
     <>
-      {store!== null && store.customFields.length > 0 && (
+      {store!== null && !store.loadingCustomFields && (
         <Button variant="primary" type="submit" className="w-100" disabled={store.loading}>
           {store.loading ? <Spinner animation="border" /> : isEdit ? t("editButton") : t("createButton")}
         </Button>

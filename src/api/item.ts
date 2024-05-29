@@ -2,6 +2,7 @@ import axiosInstance from "../config/axiosConfig";
 import { MessageApiResponse } from "../types/MessageApiResponse";
 import { PaginationItemListResponse } from "../types/item-types/PaginationItemListResponse";
 import { EditItemRequest } from "../types/item-types/EditItemRequest";
+import { ItemWithLikesResponse } from "../types/item-types/ItemWithLikesResponse";
 
 const API_URL = process.env.REACT_APP_URL || "";
 
@@ -14,6 +15,12 @@ const createItem = async (formData: any) => {
 const getItemList = async (collectionId: number, page: number) => {
   return axiosInstance.get<PaginationItemListResponse>(
     API_URL + `/api/item/get/items?collectionId=${collectionId}&page=${page}`
+  );
+};
+
+const getItemWithLikes = async (itemId: number) => {
+  return axiosInstance.get<ItemWithLikesResponse>(
+    API_URL + `/api/item/get/item?itemId=${itemId}`
   );
 };
 
@@ -30,4 +37,4 @@ const editItem = async (itemId: number, body: EditItemRequest) => {
   );
 };
 
-export { createItem, getItemList, deleteItem, editItem };
+export { createItem, getItemList, deleteItem, editItem, getItemWithLikes };

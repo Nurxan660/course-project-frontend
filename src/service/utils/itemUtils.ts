@@ -19,4 +19,4 @@ const mapTagsToArray = (tags: string) => {
     .filter((tag: string) => tag !== "");
 };
 
-export { transformItemCreateData, transformItemEditData };
+export { transformItemCreateData, transformItemEditData};

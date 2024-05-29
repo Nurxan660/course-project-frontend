@@ -14,6 +14,7 @@ import CollectionItemsPage from "./pages/CollectionItemsPage";
 import AddItemPage from "./pages/AddItemPage";
 import { ItemFormStoreProvider } from "./context/ItemFormContext";
 import EditItemPage from "./pages/EditItemPage";
+import ItemPage from "./pages/ItemPage";
 
 function App() {
   const { i18n } = useTranslation()
@@ -30,6 +31,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/collections" element={<UserMainPage />} />
         <Route path="/collections/:id" element={<CollectionItemsPage />} />
+        <Route path="/collections/:id/item/:itemId" element={<ItemPage />} />
         <Route
           path="/collections/add"
           element={

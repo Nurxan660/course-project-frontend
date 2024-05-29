@@ -2,11 +2,13 @@ import React from "react";
 import ItemFormStore from "../../store/ItemFormStore";
 import { Col, Placeholder, Form } from "react-bootstrap";
 import { useItemFormStore } from "../../context/ItemFormContext";
-const DynamicFormPlaceholder = () => {
+import { observer } from "mobx-react-lite";
+
+const DynamicFormPlaceholder = observer(() => {
   const store = useItemFormStore();
   return (
     <>
-      {store?.customFields.length === 0 && (
+      {store?.loadingCustomFields  && (
         <>
           {Array.from({ length: 5 }).map((_, index) => (
             <Col xs={12} key={index}>
@@ -25,6 +27,6 @@ const DynamicFormPlaceholder = () => {
       )}
     </>
   );
-};
+});
 
 export default DynamicFormPlaceholder;

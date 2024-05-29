@@ -16,12 +16,14 @@ const EditItemPage = () => {
   const notifyError = (message: string) => toast.error(message);
 
   const loadCustomFields = async () => {
+    store?.setLoadingCustomFields(true);
     try {
       const res = await getCollectionCustomFields(Number(params.id));
       const customFieldWithValue = await getCustomFieldWithValue(Number(params.itemId));
       store?.setCustomFields(res.data);
       store?.setDefaultValues(customFieldWithValue.data);
     } catch (e) { }
+    store?.setLoadingCustomFields(false);
   }
 
   useEffect(() => {

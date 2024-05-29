@@ -4,6 +4,7 @@ import { CustomField } from "../types/CustomField";
 class ItemFormStore {
   customFields: CustomField[] = [];
   loading: boolean = false;
+  loadingCustomFields: boolean = false;
   defaultValues: any;
 
   constructor() {
@@ -20,6 +21,10 @@ class ItemFormStore {
 
   setLoading(loading: boolean) {
     this.loading = loading;
+  }
+
+  setLoadingCustomFields(loading: boolean) {
+    this.loadingCustomFields = loading;
   }
 }
 export default ItemFormStore

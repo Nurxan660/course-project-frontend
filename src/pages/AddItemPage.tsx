@@ -15,10 +15,12 @@ const AddItemPage = () => {
   const notifyError = (message: string) => toast.error(message);
 
   const loadCustomFields = async () => {
+    store?.setLoadingCustomFields(true);
     try {
       const res = await getCollectionCustomFields(Number(params.id));
       store?.setCustomFields(res.data)
     } catch (e) { }
+    store?.setLoadingCustomFields(false);
   }
 
   useEffect(() => {

@@ -72,10 +72,21 @@ const CollectionItemsList = observer(() => {
                     />
                   </td>
                   <td>{index + 1}</td>
-                  <td>{v.itemName}</td>
+                  <td>
+                    <Link to={`/collections/${params.id}/item/${v.itemId}`}>
+                      {v.itemName}
+                    </Link>
+                  </td>
                   {v.customFieldValues.map((v, index) => {
                     return <td key={index}>{v}</td>;
                   })}
+                  {Array.from({
+                    length:
+                      ItemListStore?.items.customFieldNames.length -
+                      v.customFieldValues.length,
+                  }).map((_, index) => (
+                    <td key={`placeholder-${index}`}></td>
+                  ))}
                   <td className="center-icons">
                     <Link
                       to={`/collections/${params.id}/edit-item/${v.itemId}`}
