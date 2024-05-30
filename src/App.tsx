@@ -15,6 +15,10 @@ import AddItemPage from "./pages/AddItemPage";
 import { ItemFormStoreProvider } from "./context/ItemFormContext";
 import EditItemPage from "./pages/EditItemPage";
 import ItemPage from "./pages/ItemPage";
+import PrivateUserRoute from "./pages/private-routes/PrivateUserRoute";
+import NotFoundPage from "./pages/NotFoundPage";
+import AdminPage from "./pages/AdminPage";
+import PrivateAdminRoute from "./pages/private-routes/PrivateAdminRoute";
 
 function App() {
   const { i18n } = useTranslation()
@@ -29,39 +33,77 @@ function App() {
         <Route path="/register" element={<Registration />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<HomePage />} />
-        <Route path="/collections" element={<UserMainPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+        <Route
+          path="/admin"
+          element={
+            <PrivateAdminRoute
+              component={<AdminPage />}
+              errorComponent={<NotFoundPage />}
+            />
+          }
+        />
+        <Route
+          path="/collections"
+          element={
+            <PrivateUserRoute
+              component={<UserMainPage />}
+              errorComponent={<NotFoundPage />}
+            />
+          }
+        />
         <Route path="/collections/:id" element={<CollectionItemsPage />} />
         <Route path="/collections/:id/item/:itemId" element={<ItemPage />} />
         <Route
           path="/collections/add"
           element={
-            <CollectionFormStoreProvider>
-              <AddCollectionPage />
-            </CollectionFormStoreProvider>
+            <PrivateUserRoute
+              component={
+                <CollectionFormStoreProvider>
+                  <AddCollectionPage />
+                </CollectionFormStoreProvider>
+              }
+              errorComponent={<NotFoundPage />}
+            />
           }
         />
         <Route
           path="/collections/:id/edit-item/:itemId"
           element={
-            <ItemFormStoreProvider>
-              <EditItemPage />
-            </ItemFormStoreProvider>
+            <PrivateUserRoute
+              component={
+                <ItemFormStoreProvider>
+                  <EditItemPage />
+                </ItemFormStoreProvider>
+              }
+              errorComponent={<NotFoundPage />}
+            />
           }
         />
         <Route
           path="/collections/:id/add-item"
           element={
-            <ItemFormStoreProvider>
-              <AddItemPage />
-            </ItemFormStoreProvider>
+            <PrivateUserRoute
+              component={
+                <ItemFormStoreProvider>
+                  <AddItemPage />
+                </ItemFormStoreProvider>
+              }
+              errorComponent={<NotFoundPage />}
+            />
           }
         />
         <Route
           path="/collections/edit/:id"
           element={
-            <CollectionFormStoreProvider>
-              <EditCollectionPage />
-            </CollectionFormStoreProvider>
+            <PrivateUserRoute
+              component={
+                <CollectionFormStoreProvider>
+                  <EditCollectionPage />
+                </CollectionFormStoreProvider>
+              }
+              errorComponent={<NotFoundPage />}
+            />
           }
         />
       </Routes>

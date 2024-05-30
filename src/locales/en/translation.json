@@ -51,7 +51,9 @@
     "lastAddedItemsLabel": "Last items",
     "collectionLabel": "Collection",
     "authorLabel": "Author",
-    "openItemButton": "Open item"
+    "openItemButton": "Open item",
+    "blockUserButton": "Block",
+    "inProgressButton": "In progress..."
 
 
 

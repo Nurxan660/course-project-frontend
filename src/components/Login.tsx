@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { login } from "../api/auth";
+import { UserData, login } from "../api/auth";
 import { setTokens } from "../service/utils/tokenUtils";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -37,9 +37,14 @@ const Login = () => {
       setLoading(true);
       const res = await login(formData);
       setTokens(res.data);
-      navigate("/collections", { replace: true });
+      navigateUser(res.data)
     } catch (e: any) { handleErrorResponse(e) }
   };
+
+  const navigateUser = (user: UserData) => {
+    user.role === 'ROLE_USER' ? 
+    navigate("/collections", { replace: true }) : navigate("/admin", { replace: true })
+  }
 
   const handleErrorResponse = (e: any) => {
     const res = e.response?.data.message

@@ -7,6 +7,7 @@ import { LoginFormInput } from "../components/Login";
 const API_URL = process.env.REACT_APP_API_URL;
 
 interface UserData {
+  role: string;
   token: string;
   refreshToken: string;
   fullName: string;

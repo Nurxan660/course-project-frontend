@@ -51,5 +51,7 @@
     "lastAddedItemsLabel": "Eng so'nggi qo'shimchalar",
     "collectionLabel": "To'plam",
     "authorLabel": "Muallif",
-    "openItemButton": "Ochiq element"
+    "openItemButton": "Ochiq element",
+    "blockUserButton": "Bloklash",
+    "inProgressButton": "Jarayonda..."
 }

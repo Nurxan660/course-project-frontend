@@ -6,6 +6,7 @@ const Pagination = observer(() => {
     const store = usePaginationStore();
 
   return (
+    <div className='d-flex justify-content-center align-items-center mt-4'>
     <PaginationControl
       page={store?.page}
       total={store?.totalPages || 0}
@@ -15,6 +16,7 @@ const Pagination = observer(() => {
       }}
       ellipsis={1}
     />
+    </div>
   );
 })
 
