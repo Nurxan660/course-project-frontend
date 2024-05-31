@@ -14,7 +14,7 @@ const renderField = (field: CustomField, registerProps: UseFormRegister<any>, er
     </>
 );
 
-const renderTextAreaField = (field: CustomField, registerProps: UseFormRegister<any>, errors: FieldErrors<any>) => (
+const renderTextAreaField = (field: CustomField, registerProps: UseFormRegister<any>) => (
     <>
     <Form.Label>{field.name}</Form.Label>
     <FormControl
@@ -25,7 +25,7 @@ const renderTextAreaField = (field: CustomField, registerProps: UseFormRegister<
     </>
 );
 
-const renderCheckBoxField = (field: CustomField, registerProps: UseFormRegister<any>, errors: FieldErrors<any>) => (
+const renderCheckBoxField = (field: CustomField, registerProps: UseFormRegister<any>) => (
     <Form.Check label={field.name} {...registerProps(field.name)}/>
 );
 

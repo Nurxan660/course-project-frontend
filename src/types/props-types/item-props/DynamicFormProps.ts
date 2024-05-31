@@ -1,4 +1,4 @@
-import { UseFormRegister, FieldErrors } from "react-hook-form";
+import { UseFormRegister, FieldErrors, UseFormTrigger } from "react-hook-form";
 
 interface DynamicFormProps {
   register: UseFormRegister<any>;

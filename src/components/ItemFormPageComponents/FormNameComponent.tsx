@@ -12,6 +12,7 @@ const FormNameComponent = ({register, errors}: ItemFormComponentsProps) => {
           {...register("name", {required: true})}
           type="text"
           placeholder="Enter name"
+          isInvalid={!!errors["name"]}
         />
         {errors["name"] && (
           <span className="description-validation-message">This field is required</span>

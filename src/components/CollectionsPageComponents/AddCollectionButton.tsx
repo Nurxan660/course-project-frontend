@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const AddCollectionButton = () => {
     const { t } = useTranslation();
   return (
-    <Row className="mt-3 mb-2">
+    <Row className="pt-3 pb-2">
       <Col className="d-flex justify-content-center">
         <Link to='/collections/add'>
           <Button variant="primary">{t("addCollection")}</Button>

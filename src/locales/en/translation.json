@@ -58,5 +58,6 @@
     "loadingMessage": "Loading...",
     "createTagLabel": "Create tag",
     "tagLabel": "Tags",
-    "deleteButton": "Delete"
+    "deleteButton": "Delete",
+    "notFoundLabel": "Not found"
 }

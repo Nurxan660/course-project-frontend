@@ -5,13 +5,14 @@ import { useEffect } from 'react';
 import ItemListStore from '../../store/ItemListStore';
 import { usePaginationStore } from '../../context/StoreContext';
 import { observer } from 'mobx-react-lite';
-import { Spinner, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import DeleteItemStore from '../../store/DeleteItemStore';
 import { Link } from 'react-router-dom';
 import { getCollectionBasic } from '../../api/collection';
 import { getTokens } from '../../service/utils/tokenUtils';
 import TableHeaders from './TableHeaders';
-import TableSpinner from './TableSpinner';
+import TableSpinner from '../Common/TableSpinner';
+import NotFoundComponent from '../Common/NotFoundComponent';
 
 const CollectionItemsList = observer(() => {
   const params = useParams();
@@ -40,7 +41,9 @@ const CollectionItemsList = observer(() => {
         <TableHeaders />
         <tbody>
           {ItemListStore.loading ? (
-            <TableSpinner />
+            <TableSpinner
+              colspan={3 + ItemListStore.items.customFieldNames.length}
+            />
           ) : (
             ItemListStore.items.items.map((v, index) => {
               return (
@@ -87,6 +90,9 @@ const CollectionItemsList = observer(() => {
           )}
         </tbody>
       </Table>
+      {ItemListStore.items.items.length === 0 && !ItemListStore.loading && (
+        <NotFoundComponent />
+      )}
     </div>
   );
 })

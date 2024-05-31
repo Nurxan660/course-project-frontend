@@ -58,5 +58,6 @@
     "loadingMessage": "Yuklanmoqda...",
     "createTagLabel": "Teg yaratish",
     "tagLabel": "Teglar",
-    "deleteButton": "Oʻchirish"
+    "deleteButton": "Oʻchirish",
+    "notFoundLabel": "Topilmadi"
 }

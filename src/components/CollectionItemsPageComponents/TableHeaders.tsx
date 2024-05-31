@@ -2,9 +2,11 @@ import { getTokens } from '../../service/utils/tokenUtils';
 import { Form } from 'react-bootstrap';
 import ItemListStore from '../../store/ItemListStore';
 import { observer } from 'mobx-react-lite';
+import { useTranslation } from 'react-i18next';
 
 const TableHeaders = observer(() => {
     const currentUser = getTokens();
+    const { t } = useTranslation();
 
   return (
     <thead>
@@ -15,7 +17,7 @@ const TableHeaders = observer(() => {
           </th>
         )}
         <th>№</th>
-        <th>Name</th>
+        <th>{t('nameLabel')}</th>
         {ItemListStore.items.customFieldNames.map((v) => {
           return <th key={v}>{v}</th>;
         })}
