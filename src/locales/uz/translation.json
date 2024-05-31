@@ -53,5 +53,10 @@
     "authorLabel": "Muallif",
     "openItemButton": "Ochiq element",
     "blockUserButton": "Bloklash",
-    "inProgressButton": "Jarayonda..."
+    "inProgressButton": "Jarayonda...",
+    "noOptionMessageTags": "Variantlar yo'q",
+    "loadingMessage": "Yuklanmoqda...",
+    "createTagLabel": "Teg yaratish",
+    "tagLabel": "Teglar",
+    "deleteButton": "Oʻchirish"
 }

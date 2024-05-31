@@ -4,8 +4,10 @@ import ItemListStore from '../../store/ItemListStore';
 import { observer } from 'mobx-react-lite';
 import DefaultImageLinks from '../../enum/DefaultImageLinks';
 import MDEditor from '@uiw/react-md-editor';
+import { useTranslation } from 'react-i18next';
 
 const CollectionCard = observer(() => {
+  const { t } = useTranslation();
   return (
     <Card>
       <Row className="align-items-center">
@@ -19,10 +21,10 @@ const CollectionCard = observer(() => {
           <Card.Body>
             <Card.Title>{ItemListStore.collection.name}</Card.Title>
             <Card.Text>
-              <strong>Category: </strong>{ItemListStore.collection.category}
+              <strong>{t('categoryLabel')}: </strong>{ItemListStore.collection.category}
             </Card.Text>
             <Card.Text>
-              <strong>Description: </strong>
+              <strong>{t('descriptionLabel')}: </strong>
               <MDEditor.Markdown source={ItemListStore.collection.description} />
             </Card.Text>
           </Card.Body>

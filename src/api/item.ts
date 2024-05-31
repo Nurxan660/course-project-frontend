@@ -4,6 +4,7 @@ import { PaginationItemListResponse } from "../types/item-types/PaginationItemLi
 import { EditItemRequest } from "../types/item-types/EditItemRequest";
 import { ItemWithLikesResponse } from "../types/item-types/ItemWithLikesResponse";
 import { LastAddedItemsResponse } from "../types/item-types/LastAddedItemsResponse";
+import { Tag } from "../types/Tag";
 
 const API_URL = process.env.REACT_APP_URL || "";
 
@@ -16,6 +17,12 @@ const createItem = async (formData: any) => {
 const getItemList = async (collectionId: number, page: number) => {
   return axiosInstance.get<PaginationItemListResponse>(
     API_URL + `/open-api/item/get/items?collectionId=${collectionId}&page=${page}`
+  );
+};
+
+const searchTags = async (term: string) => {
+  return axiosInstance.get<Tag[]>(
+    API_URL + `/api/item/search/tags?term=${term}`
   );
 };
 
@@ -43,4 +50,4 @@ const getLastAddedItems = async () => {
     API_URL + `/open-api/item/get/last-added-items`);
 };
 
-export { createItem, getItemList, deleteItem, editItem, getItemWithLikes, getLastAddedItems };
+export { createItem, getItemList, deleteItem, editItem, getItemWithLikes, getLastAddedItems, searchTags };

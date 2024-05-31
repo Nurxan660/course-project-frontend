@@ -43,6 +43,10 @@ h2 {
     0 1px 1px #dc3545!important;
 }
 
+.tag-validation-error-input {
+    border-color: red!important;
+}
+
 .center-icons {
     display: flex;
     justify-content: center;

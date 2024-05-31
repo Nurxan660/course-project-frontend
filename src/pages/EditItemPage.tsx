@@ -8,9 +8,11 @@ import ItemFormNavigation from '../components/ItemFormPageComponents/ItemFormNav
 import { getCustomFieldWithValue } from '../api/custom_field'
 import { transformItemEditData } from '../service/utils/itemUtils'
 import { editItem } from '../api/item'
+import { useTranslation } from 'react-i18next'
 
 const EditItemPage = () => {
   const store = useItemFormStore();
+  const { t } = useTranslation();
   const params = useParams();
   const notifySuccess = (message: string) => toast.success(message);
   const notifyError = (message: string) => toast.error(message);
@@ -31,9 +33,10 @@ const EditItemPage = () => {
   }, [])
 
   const onSubmit = async (data: any) => {
+    if (!store?.validateTags(t('fieldRequired'))) return
     store?.setLoading(true);
     try {
-      const res = await editItem(Number(params.itemId), transformItemEditData(data));
+      const res = await editItem(Number(params.itemId), transformItemEditData(data, store?.selectedTags || []));
       notifySuccess(res.data.message);
     } catch (e) {  }
     store?.setLoading(false);

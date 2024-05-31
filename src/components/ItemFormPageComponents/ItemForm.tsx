@@ -29,7 +29,7 @@ const ItemForm = observer(({ onSubmit, isEdit }: ItemFormProps) => {
         <Form onSubmit={handleSubmit(onHandleSubmit)} noValidate>
           <Row>
             <FormNameComponent register={register} errors={errors} />
-            <FormTagsComponent register={register} errors={errors} />
+            <FormTagsComponent/>
             <DynamicForm register={register} errors={errors} />
           </Row>
           <ItemFormButton isEdit={isEdit}/>

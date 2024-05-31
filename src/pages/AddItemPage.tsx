@@ -29,7 +29,7 @@ const AddItemPage = () => {
 
   const onSubmit = async (data: any) => {
     store?.setLoading(true);
-    const transformedData = transformItemCreateData(data, Number(params.id));
+    const transformedData = transformItemCreateData(data, Number(params.id), store?.selectedTags || []);
     try {
       const res = await createItem(transformedData);
       notifySuccess(res.data.message)

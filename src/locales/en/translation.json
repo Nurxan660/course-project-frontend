@@ -53,8 +53,10 @@
     "authorLabel": "Author",
     "openItemButton": "Open item",
     "blockUserButton": "Block",
-    "inProgressButton": "In progress..."
-
-
-
+    "inProgressButton": "In progress...",
+    "noOptionMessageTags": "No options",
+    "loadingMessage": "Loading...",
+    "createTagLabel": "Create tag",
+    "tagLabel": "Tags",
+    "deleteButton": "Delete"
 }

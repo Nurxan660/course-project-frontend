@@ -29,7 +29,7 @@ const DeleteItemsButton = observer(() => {
             DeleteModalStore.openModalForDeleteItem(handleDeleteItem)
           }
         >
-          Delete
+          {t('deleteButton')}
         </Button>
       </Col>
       <ToastContainer />

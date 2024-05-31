@@ -1,23 +1,51 @@
 import { Col, Form } from "react-bootstrap"
-import { ItemFormComponentsProps } from "../../types/props-types/item-props/ItemFormComponentsProps";
+import CreatableSelect from 'react-select/creatable';
+import { searchTags } from "../../api/item";
+import { useItemFormStore } from "../../context/ItemFormContext";
+import { observer } from "mobx-react-lite";
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
-const FormTagsComponent = ({ register, errors }: ItemFormComponentsProps) => {
+const FormTagsComponent = observer(() => {
+  const store = useItemFormStore();
+  const { t } = useTranslation();
+
+  const handleSearchTags = async () => {
+    try {
+      store?.setLoading(true);
+      const res = await searchTags(store?.tagValue || '');
+      store?.setTagsOption(res.data);
+    } catch {  }
+    store?.setLoading(false);
+  }
+
+  useEffect(() => {
+    handleSearchTags();
+  }, [store?.tagValue])
+  
   return (
     <Col md={6}>
       <Form.Group className="mb-3">
-        <Form.Label>Tags</Form.Label>
-        <Form.Control
-          {...register("tags", {required: true})}
-          type="text"
-          placeholder="Enter tags"
-          isInvalid={!!errors["tags"]}
+        <Form.Label>{t('tagLabel')}</Form.Label>
+        <CreatableSelect
+          value={store?.selectedTags}
+          inputValue={store?.tagValue}
+          onChange={(value) => store?.setSelectedTags(value)}
+          onInputChange={(value) => store?.setTagValue(value)}
+          options={store?.tagsOption}
+          isMulti
+          className={store?.tagErrorMessage ? "tag-validation-error-input" : ''}
+          isLoading={store?.loading}
+          noOptionsMessage={() => t('noOptionMessageTags')}
+          loadingMessage={() => t('loadingMessage')}
+          formatCreateLabel={(inputValue) => `${t('createTagLabel')} "${inputValue}"`}
         />
-        {errors["tags"] && (
-          <span className="invalid-feedback">This field is required</span>
+        {store?.tagErrorMessage && (
+          <span className='description-validation-message'>{store.tagErrorMessage}</span>
         )}
       </Form.Group>
     </Col>
   );
-};
+});
 
 export default FormTagsComponent

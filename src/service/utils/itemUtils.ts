@@ -1,22 +1,28 @@
+import { Tag } from "../../types/Tag";
 import { EditItemRequest } from "../../types/item-types/EditItemRequest";
 
-const transformItemCreateData = (data: any, collectionId: number) => {
-  const { name, tags, ...customFieldsData } = data;
-  const arrayTags = mapTagsToArray(String(tags))
-  return { name, tags: arrayTags, collectionId, customFieldValues: customFieldsData };
+const transformItemCreateData = (data: any, collectionId: number, tags: []) => {
+  const { name, ...customFieldsData } = data;
+  const mappedTags = mapTags(tags);
+  return { name, tags: mappedTags, collectionId, customFieldValues: customFieldsData };
 };
 
-const transformItemEditData = (data: any): EditItemRequest => {
-  const { name, tags, ...customFieldsData } = data;
-  const arrayTags = mapTagsToArray(String(tags))
-  return { name, tags: arrayTags, customFields: customFieldsData  };
+const transformItemEditData = (data: any, tags: []): EditItemRequest => {
+  const { name, ...customFieldsData } = data;
+  const mappedTags = mapTags(tags);
+  return { name, tags: mappedTags, customFields: customFieldsData  };
 };
 
-const mapTagsToArray = (tags: string) => {
-  return String(tags)
+const mapItemTagsToArray = (tags: string) => {
+  return tags
     .split(",")
-    .map((tag: string) => tag.trim())
-    .filter((tag: string) => tag !== "");
+    .map((v) => v.trim())
+    .filter((v) => v)
+    .map((v) => ({ value: v, label: v }));
 };
 
-export { transformItemCreateData, transformItemEditData};
+const mapTags = (tags: []) => {
+  return tags.map((tag: Tag) => tag.value.trim());
+};
+
+export { transformItemCreateData, transformItemEditData, mapItemTagsToArray};
