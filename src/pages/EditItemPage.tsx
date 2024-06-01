@@ -15,18 +15,21 @@ const EditItemPage = () => {
   const { t } = useTranslation();
   const params = useParams();
   const notifySuccess = (message: string) => toast.success(message);
-  const notifyError = (message: string) => toast.error(message);
 
   const loadCustomFields = async () => {
     store?.setLoadingCustomFields(true);
+    await handleGetCustomFieldsValues();
+    store?.setLoadingCustomFields(false);
+  }
+
+  const handleGetCustomFieldsValues = async () => {
     try {
       const res = await getCollectionCustomFields(Number(params.id));
       const customFieldWithValue = await getCustomFieldWithValue(Number(params.itemId));
       store?.setCustomFields(res.data);
       store?.setDefaultValues(customFieldWithValue.data);
-    } catch (e) { }
-    store?.setLoadingCustomFields(false);
-  }
+    } catch (e) {}
+  };
 
   useEffect(() => {
     loadCustomFields()
@@ -35,12 +38,16 @@ const EditItemPage = () => {
   const onSubmit = async (data: any) => {
     if (!store?.validateTags(t('fieldRequired'))) return
     store?.setLoading(true);
+    await handleEditItem(data);
+    store?.setLoading(false);
+  };
+
+  const handleEditItem = async (data: any) => {
     try {
       const res = await editItem(Number(params.itemId), transformItemEditData(data, store?.selectedTags || []));
       notifySuccess(res.data.message);
     } catch (e) {  }
-    store?.setLoading(false);
-  };
+  }
 
   return (
     <>

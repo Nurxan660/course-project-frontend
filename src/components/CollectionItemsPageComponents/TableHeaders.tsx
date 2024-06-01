@@ -1,4 +1,4 @@
-import { getTokens } from '../../service/utils/tokenUtils';
+import { getTokens } from '../../service/utils/authUtils';
 import { Form } from 'react-bootstrap';
 import ItemListStore from '../../store/ItemListStore';
 import { observer } from 'mobx-react-lite';

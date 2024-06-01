@@ -18,6 +18,7 @@ const registerUser = async (regData: RegFormInput) => {
 };
 
 const logout = async (refreshToken: string) => {
+  if(!refreshToken) return;
   return axios.post(API_URL + '/api/token/invalidate', {refreshToken});
 };
 

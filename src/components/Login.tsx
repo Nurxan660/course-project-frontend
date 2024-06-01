@@ -5,8 +5,8 @@ import { useForm } from 'react-hook-form';
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { UserData, login } from "../api/auth";
-import { setTokens } from "../service/utils/tokenUtils";
-import { useState } from "react";
+import { setTokens } from "../service/utils/authUtils";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 interface LoginFormInput {
@@ -22,6 +22,8 @@ const Login = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const sessionExpired = queryParams.get('sessionExpired') === 'true';
+  const isBlocked = queryParams.get('isBlocked') === 'true';
+  const accessDenied = queryParams.get('accessDenied') === 'true';
 
   const validationSchema = yup.object().shape({
     email: yup.string().required(t("emailRequired")).email(t("invalidEmail")),
@@ -51,6 +53,12 @@ const Login = () => {
     res ? setErrorMessage(res) : setErrorMessage(t('unexpectedError'))
     setLoading(false);
   }
+
+  useEffect(() => {
+    if (accessDenied) setErrorMessage(t("accessDenied"));
+    if (isBlocked) setErrorMessage(t("isBlockedMessageError"));
+    if (sessionExpired) setErrorMessage(t("sessionExpired"));
+  }, []);
 
   return (
     <Container className="d-flex w-100 container-min-height">
@@ -88,9 +96,6 @@ const Login = () => {
           </Form.Group>
           {errorMessage && (
             <Alert variant="danger">{errorMessage}</Alert>
-          )}
-          {sessionExpired && (
-            <Alert variant="danger">{t("sessionExpired")}</Alert>
           )}
           <Button variant="primary" type="submit" className="w-100" disabled={loading}>
             {loading ? <Spinner animation="border" /> : t("loginButton")}

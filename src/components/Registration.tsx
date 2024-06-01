@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useTranslation } from 'react-i18next';
 import { registerUser } from '../api/auth';
-import { setTokens } from '../service/utils/tokenUtils';
+import { setTokens } from '../service/utils/authUtils';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -41,7 +41,7 @@ const Registration = () => {
   };
 
   const handleErrorResponse = (e: any) => {
-    const res = e.response?.data.error
+    const res = e.response?.data.message
     res ? setErrorMessage(res) : setErrorMessage(t('unexpectedError'))
   }
 

@@ -1,5 +1,5 @@
 import { PrivateRouteProps } from '../../types/props-types/PrivateRouteProps';
-import { getTokens } from '../../service/utils/tokenUtils';
+import { getTokens } from '../../service/utils/authUtils';
 
 const PrivateUserRoute = ({ component, errorComponent }: PrivateRouteProps) => {
   const role = getTokens()?.role;

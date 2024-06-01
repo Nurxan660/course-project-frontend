@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import ItemLikeButton from "./ItemLikeButton";
 import CustomFieldTypes from "../../enum/CustomFieldTypes";
+import { convertBooleanFieldType } from "../../service/utils/booleanUtils";
 
 const ItemDescription = observer(() => {
     const params = useParams();
@@ -17,11 +18,6 @@ const ItemDescription = observer(() => {
         } catch (e) {  }
         ItemStore.setLoading(false);
     }
-
-    const convertBoolean = (value: any) => {
-      if(value === '1') return <span style={{ color: 'green' }}>✔</span>
-      else return <span style={{ color: 'red' }}>✖</span>
-    } 
 
     useEffect(() => {
         loadItem()
@@ -42,7 +38,7 @@ const ItemDescription = observer(() => {
             <p key={index}>
               <strong>{field.customFieldName}: </strong>
               {field.type === CustomFieldTypes.CHECKBOX
-                ? convertBoolean(field.value)
+                ? convertBooleanFieldType(field.value)
                 : field.value}
             </p>
           ))}

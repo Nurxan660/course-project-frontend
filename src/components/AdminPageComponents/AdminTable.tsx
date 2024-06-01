@@ -4,9 +4,12 @@ import { observer } from "mobx-react-lite";
 import AdminStore from "../../store/AdminStore";
 import { getListOfUsers } from "../../api/admin";
 import { usePaginationStore } from "../../context/StoreContext";
+import { convertBooleanAdminStatus, convertBooleanStatus } from "../../service/utils/booleanUtils";
+import { useTranslation } from "react-i18next";
 
 const AdminTable = observer(() => {
   const paginationStore = usePaginationStore();
+  const { t } = useTranslation();
 
   const loadUsers = async () => {
     try {
@@ -27,9 +30,10 @@ const AdminTable = observer(() => {
           <th>
             <Form.Check onClick={() => AdminStore.handleUserCheckAll()} />
           </th>
-          <th>Имя</th>
-          <th>Email</th>
-          <th>Админ</th>
+          <th>{t('nameLabel')}</th>
+          <th>{t('emailLabel')}</th>
+          <th>{t('adminLabel')}</th>
+          <th>{t('blockedLabel')}</th>
         </tr>
       </thead>
       <tbody>
@@ -44,7 +48,8 @@ const AdminTable = observer(() => {
             </td>
             <td>{user.fullName}</td>
             <td>{user.email}</td>
-            <td>{user.role === "ROLE_ADMIN" ? "Да" : "Нет"}</td>
+            <td>{convertBooleanAdminStatus(user.role)}</td>
+            <td>{convertBooleanStatus(user.isBlocked)}</td>
           </tr>
         ))}
       </tbody>

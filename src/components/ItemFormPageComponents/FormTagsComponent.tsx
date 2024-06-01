@@ -19,6 +19,11 @@ const FormTagsComponent = observer(() => {
     store?.setLoading(false);
   }
 
+  const handleOnChange = (value: any) => {
+    store?.setSelectedTags(value)
+    store?.setTagErrorMessage('')
+  }
+
   useEffect(() => {
     handleSearchTags();
   }, [store?.tagValue])
@@ -30,7 +35,7 @@ const FormTagsComponent = observer(() => {
         <CreatableSelect
           value={store?.selectedTags}
           inputValue={store?.tagValue}
-          onChange={(value) => store?.setSelectedTags(value)}
+          onChange={handleOnChange}
           onInputChange={(value) => store?.setTagValue(value)}
           options={store?.tagsOption}
           isMulti

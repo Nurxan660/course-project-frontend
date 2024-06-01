@@ -27,15 +27,15 @@ const CustomFieldModal = observer(() => {
   return (
     <Modal show={store?.isCustomFieldModalOpen}>
       <Modal.Header>
-        <Modal.Title>Add custom field</Modal.Title>
+        <Modal.Title>{t('addCustomFieldTitle')}</Modal.Title>
       </Modal.Header>
       <Form onSubmit={handleSubmit(onSubmit)}>
       <Modal.Body>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>Name</Form.Label>
+            <Form.Label>{t('nameLabel')}</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Field Name"
+              placeholder={t('fieldNamePlaceholder')}
               isInvalid={!!errors.name}
               {...register("name")}
             />
@@ -46,7 +46,7 @@ const CustomFieldModal = observer(() => {
         )}
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Type</Form.Label>
+            <Form.Label>{t('typeLabel')}</Form.Label>
             <Form.Control
               as="select"
               isInvalid={!!errors.type}
@@ -54,7 +54,7 @@ const CustomFieldModal = observer(() => {
             >
               {Object.entries(CustomFieldTypes).map(([key, value]) => (
                 <option key={key.toLowerCase()} value={key.toLowerCase()}>
-                  {value}
+                  {t(value)}
                 </option>
               ))}
             </Form.Control>
@@ -64,12 +64,12 @@ const CustomFieldModal = observer(() => {
           </Form.Control.Feedback>
         )}
           </Form.Group>
-          <Form.Check label="Required" {...register("isRequired")}/>
-          <Form.Check label="Show in table" {...register("showInTable")}/>
+          <Form.Check label={t('fieldRequired')} {...register("isRequired")}/>
+          <Form.Check label={t('showInTableBoolean')} {...register("showInTable")}/>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={() => store?.setIsCustomFieldModalOpen(false)}>Close</Button>
-        <Button variant="primary" type='submit'>Add</Button>
+        <Button variant="secondary" onClick={() => store?.setIsCustomFieldModalOpen(false)}>{t('closeButtonName')}</Button>
+        <Button variant="primary" type='submit'>{t('addButton')}</Button>
       </Modal.Footer>
       </Form>
     </Modal>

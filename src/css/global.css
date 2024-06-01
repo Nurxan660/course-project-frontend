@@ -44,7 +44,8 @@ h2 {
 }
 
 .tag-validation-error-input {
-    border-color: red!important;
+    border: 1px solid red!important;
+    border-radius: 4px!important;
 }
 
 .center-icons {

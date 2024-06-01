@@ -1,9 +1,11 @@
 import { observer } from "mobx-react-lite";
 import { useCollectionFormStore } from "../../context/CollectionFormContext";
 import Table from 'react-bootstrap/Table';
+import { useTranslation } from "react-i18next";
 
 const CustomFieldList = observer(() => {
   const store = useCollectionFormStore();
+  const { t } = useTranslation();
 
   const handleDeleteField = (index: number) => {
     store?.removeCustomField(index);
@@ -16,10 +18,10 @@ const CustomFieldList = observer(() => {
         <thead>
           <tr>
             <th>№</th>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Required</th>
-            <th>Show in table</th>
+            <th>{t('nameLabel')}</th>
+            <th>{t('typeLabel')}</th>
+            <th>{t('fieldRequired')}</th>
+            <th>{t('showInTableBoolean')}</th>
             <th>Action</th>
           </tr>
         </thead>

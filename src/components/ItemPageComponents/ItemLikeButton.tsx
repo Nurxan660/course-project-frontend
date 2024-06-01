@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite'
 import ItemStore from '../../store/ItemStore';
 import { toggleLike } from '../../api/likes';
 import { useParams } from 'react-router-dom';
-import { getTokens } from '../../service/utils/tokenUtils';
+import { getTokens } from '../../service/utils/authUtils';
 
 const ItemLikeButton = observer(() => {
   const params = useParams();

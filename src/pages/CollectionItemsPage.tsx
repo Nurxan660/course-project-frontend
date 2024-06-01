@@ -5,7 +5,7 @@ import Pagination from '../components/Common/Pagination'
 import { StoreProvider } from '../context/StoreContext'
 import DeleteItemsButton from '../components/CollectionItemsPageComponents/DeleteItemsButton'
 import DeleteModal from '../components/Common/DeleteModal'
-import { getTokens } from '../service/utils/tokenUtils'
+import { getTokens } from '../service/utils/authUtils'
 import BreadcumbNavigation from '../components/Common/BreadcrumbNavigation'
 
 const CollectionItemsPage = () => {

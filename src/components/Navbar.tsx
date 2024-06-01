@@ -2,7 +2,7 @@ import { Nav, Navbar, Form, Container, Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import LanguageDropdown from './NavbarComponents/LanguageDropdown';
 import { useTranslation } from 'react-i18next';
-import { getTokens, removeTokens } from '../service/utils/tokenUtils';
+import { getTokens, removeTokens } from '../service/utils/authUtils';
 import { logout } from '../api/auth';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 

@@ -55,7 +55,7 @@ const AddCollectionForm = observer(({getRootProps, getInputProps, acceptedFiles,
           />
           <FormGroup className="mb-3">
             <Form.Label>{t("customFieldLabel")}</Form.Label>
-            <Button className="ml-10" onClick={() => store?.setIsCustomFieldModalOpen(true)}>Add custom field</Button>
+            <Button className="ml-10" onClick={() => store?.setIsCustomFieldModalOpen(true)}>{t('addCustomFieldTitle')}</Button>
           </FormGroup>
           <CustomFieldList />
           <Button variant="primary" type="submit" className="w-100">
