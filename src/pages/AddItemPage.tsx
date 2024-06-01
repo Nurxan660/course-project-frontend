@@ -8,7 +8,6 @@ import { createItem } from '../api/item'
 import { ToastContainer, toast } from 'react-toastify';
 import ItemFormNavigation from '../components/ItemFormPageComponents/ItemFormNavigation'
 import { useTranslation } from 'react-i18next'
-import { translate } from '@vitalets/google-translate-api'
 
 const AddItemPage = () => {
   const store = useItemFormStore();
@@ -35,13 +34,10 @@ const AddItemPage = () => {
   }, [])
 
   const onSubmit = async (data: any) => {
-    /*if (!store?.validateTags(t('fieldRequired'))) return
+    if (!store?.validateTags(t('fieldRequired'))) return
     store?.setLoading(true);
     await handleCreateItem(data);
-    store?.setLoading(false);*/
-    console.log("привет")
-    const { text } = await translate('Привет, мир! Как дела?', { to: 'en' });
-    console.log("перевод", text)
+    store?.setLoading(false);
   };
 
   const handleCreateItem = async (data: any) => {
