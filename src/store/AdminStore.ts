@@ -1,5 +1,7 @@
 import { makeAutoObservable } from "mobx"
 import { UserListResponse } from "../types/user-types/UserListResponse";
+import { changeUserRole, deleteUsers, updateUserBlockedStatus } from "../api/admin";
+import { Id } from "react-toastify";
 
 class AdminStore {
   userListReponse: UserListResponse = {
@@ -36,5 +38,29 @@ class AdminStore {
       this.checkedUsers = this.userListReponse.users.map((user) => user.id);
     }
   };
+
+  handleBlockUser = async (status: boolean, notifySuccess: (message: string) => Id) => {
+    try {
+      const res = await updateUserBlockedStatus(status, this.checkedUsers);
+      this.setIsAction(!this.isAction);
+      notifySuccess(res.data.message);
+    } catch (e) { }
+  }
+
+  handleDeleteUser = async (notifySuccess: (message: string) => Id) => {
+    try {
+      const res = await deleteUsers(this.checkedUsers);
+      this.setIsAction(!this.isAction);
+      notifySuccess(res.data.message);
+    } catch (e) { }
+  }
+
+  handleChangeUserRole = async (role: string, notifySuccess: (message: string) => Id) => {
+    try {
+      const res = await changeUserRole(this.checkedUsers, role);
+      this.setIsAction(!this.isAction);
+      notifySuccess(res.data.message);
+    } catch (e) { }
+  }
 }
 export default new AdminStore

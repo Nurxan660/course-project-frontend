@@ -12,7 +12,7 @@ class ItemFormStore {
   tagsOption: any;
   tagValue: string = "";
   selectedTags: any;
-  tagErrorMessage: string = '';
+  tagErrorMessage: string = "";
 
   constructor() {
     makeAutoObservable(this);
@@ -24,7 +24,7 @@ class ItemFormStore {
 
   setDefaultValues(values: any) {
     const { tags, ...data } = values;
-    const tagsArray = mapItemTagsToArray(tags)
+    const tagsArray = mapItemTagsToArray(tags);
     this.selectedTags = tagsArray;
     this.defaultValues = data;
   }
@@ -35,6 +35,10 @@ class ItemFormStore {
 
   setLoading(loading: boolean) {
     this.loading = loading;
+  }
+
+  setTagErrorMessage(message: string) {
+    this.tagErrorMessage = message;
   }
 
   setLoadingTags(loading: boolean) {
@@ -54,7 +58,10 @@ class ItemFormStore {
   }
 
   validateTags(message: string) {
-    this.tagErrorMessage = (!this.selectedTags || this.selectedTags.length === 0) ? message : "";
+    this.tagErrorMessage =
+      this.selectedTags?.length === 0 || this.selectedTags?.length === undefined
+        ? message
+        : "";
     return !this.tagErrorMessage;
   }
 }

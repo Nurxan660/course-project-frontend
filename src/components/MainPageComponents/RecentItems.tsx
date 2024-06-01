@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { LastAddedItemsResponse } from "../../types/item-types/LastAddedItemsResponse";
 import CardPlaceholder from "./CardPlaceholder";
 import { Link } from "react-router-dom";
+import NotFoundComponent from "../Common/NotFoundComponent";
 
 const RecentItems = () => {
   const { t } = useTranslation();
@@ -30,7 +31,7 @@ const RecentItems = () => {
         {loading ? (
           <CardPlaceholder />
         ) : items.length === 0 ? (
-          <h2 className="text-center">Not found</h2>
+          <NotFoundComponent />
         ) : (
           items.map((item) => (
             <Col key={item.id} sm={12} md={6} lg={4} className="mb-4">

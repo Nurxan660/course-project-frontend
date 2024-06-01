@@ -9,4 +9,5 @@ export interface User {
     fullName: string;
     registerDate: string;
     role: string;
+    isBlocked: boolean
 }

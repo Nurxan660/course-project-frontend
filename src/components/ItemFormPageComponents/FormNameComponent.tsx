@@ -11,11 +11,11 @@ const FormNameComponent = ({register, errors}: ItemFormComponentsProps) => {
         <Form.Control
           {...register("name", {required: true})}
           type="text"
-          placeholder="Enter name"
-          isInvalid={!!errors["name"]}
+          placeholder={t('namePlaceholder')}
+          isInvalid={!!errors.name}
         />
-        {errors["name"] && (
-          <span className="description-validation-message">This field is required</span>
+        {errors.name && (
+          <span className="description-validation-message">{t('fieldRequired')}</span>
         )}
       </Form.Group>
     </Col>

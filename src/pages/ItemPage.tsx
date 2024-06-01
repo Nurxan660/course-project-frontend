@@ -2,7 +2,7 @@ import {Container, Row, Col,Button, Card,Form,ListGroup} from "react-bootstrap";
 import ItemDescription from "../components/ItemPageComponents/ItemDescription";
 import ItemButtons from "../components/ItemPageComponents/ItemButtons";
 import { ToastContainer } from 'react-toastify';
-import { getTokens } from "../service/utils/tokenUtils";
+import { getTokens } from "../service/utils/authUtils";
 const ItemPage = () => {
   const currentUser = getTokens();
 

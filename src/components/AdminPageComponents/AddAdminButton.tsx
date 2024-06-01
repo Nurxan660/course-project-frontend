@@ -1,7 +1,31 @@
 import { Button } from "react-bootstrap"
+import AdminStore from '../../store/AdminStore';
+import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
+import { observer } from 'mobx-react-lite';
+import UserRoles from "../../enum/UserRoles";
 
-const AddAdminButton = () => {
-  return <Button variant="success ml-10 mb-1 mt-5">Добавить в админы</Button>;
-}
+const AddAdminButton = observer(() => {
+  const [loading, setLoading] = useState(false);
+  const notifySuccess = (message: string) => toast.success(message);
+  const { t } = useTranslation();
+
+  const onChangeRoleToAdmin = async () => {
+    setLoading(true);
+    await AdminStore.handleChangeUserRole(UserRoles.ADMIN, notifySuccess);
+    setLoading(false);
+  };
+
+  return (
+    <Button
+      variant="success mb-1 mt-5 ml-10"
+      onClick={onChangeRoleToAdmin}
+      disabled={loading || AdminStore.checkedUsers.length === 0}
+    >
+      {loading ? t('inProgressMessage') : t("addToAdminButton")}
+    </Button>
+  );
+})
 
 export default AddAdminButton

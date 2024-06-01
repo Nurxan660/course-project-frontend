@@ -9,7 +9,7 @@ import { Form } from 'react-bootstrap';
 import DeleteItemStore from '../../store/DeleteItemStore';
 import { Link } from 'react-router-dom';
 import { getCollectionBasic } from '../../api/collection';
-import { getTokens } from '../../service/utils/tokenUtils';
+import { getTokens } from '../../service/utils/authUtils';
 import TableHeaders from './TableHeaders';
 import TableSpinner from '../Common/TableSpinner';
 import NotFoundComponent from '../Common/NotFoundComponent';

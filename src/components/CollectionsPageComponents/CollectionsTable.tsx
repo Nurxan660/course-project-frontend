@@ -34,9 +34,9 @@ const CollectionsTable = observer(() => {
       <Table striped bordered hover size="sm">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Action</th>
+            <th>{t('nameLabel')}</th>
+            <th>{t('categoryLabel')}</th>
+            <th>{t('action')}</th>
           </tr>
         </thead>
         <tbody>

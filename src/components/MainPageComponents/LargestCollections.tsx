@@ -5,6 +5,7 @@ import { LargestCollections as LargestCollectionType } from '../../types/collect
 import { useTranslation } from 'react-i18next';
 import CardPlaceholder from './CardPlaceholder';
 import { Link } from 'react-router-dom';
+import NotFoundComponent from '../Common/NotFoundComponent';
 
 const LargestCollections = () => {
     const [collections, setCollections] = useState<LargestCollectionType[]>([]);
@@ -29,7 +30,7 @@ const LargestCollections = () => {
           {loading ? (
             <CardPlaceholder />
           ) : collections.length === 0 ? (
-            <h2 className="text-center">Not found</h2>
+            <NotFoundComponent />
           ) : (
             collections.map((collection) => (
               <Col key={collection.id} sm={12} md={6} lg={4} className="mb-4">
