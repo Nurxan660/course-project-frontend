@@ -5,6 +5,7 @@ import { EditItemRequest } from "../types/item-types/EditItemRequest";
 import { ItemWithLikesResponse } from "../types/item-types/ItemWithLikesResponse";
 import { LastAddedItemsResponse } from "../types/item-types/LastAddedItemsResponse";
 import { Tag } from "../types/Tag";
+import { ItemSearchResponse } from "../types/item-types/ItemSearchResponse";
 
 const API_URL = process.env.REACT_APP_URL || "";
 
@@ -23,6 +24,12 @@ const getItemList = async (collectionId: number, page: number) => {
 const searchTags = async (term: string) => {
   return axiosInstance.get<Tag[]>(
     API_URL + `/api/item/search/tags?term=${term}`
+  );
+};
+
+const searchItems = async (term: string) => {
+  return axiosInstance.get<ItemSearchResponse[]>(
+    API_URL + `open-api/item/search/items?term=${term}`
   );
 };
 
@@ -50,4 +57,13 @@ const getLastAddedItems = async () => {
     API_URL + `/open-api/item/get/last-added-items`);
 };
 
-export { createItem, getItemList, deleteItem, editItem, getItemWithLikes, getLastAddedItems, searchTags };
+export {
+  createItem,
+  getItemList,
+  deleteItem,
+  editItem,
+  getItemWithLikes,
+  getLastAddedItems,
+  searchTags,
+  searchItems
+};

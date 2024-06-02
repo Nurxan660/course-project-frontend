@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { getTokens, removeTokens } from '../service/utils/authUtils';
 import { logout } from '../api/auth';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import LiveSearch from './LiveSearchComponents/LiveSearch';
 
 const NavbarComponent = () => {
   const { t } = useTranslation();
@@ -57,16 +58,9 @@ const NavbarComponent = () => {
             {user && (
               <Nav.Link onClick={handleLogout}>{t("logoutButton")}</Nav.Link>
             )}
+
+            <LiveSearch />
           </Nav>
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder={t("searchPlaceholderNav")}
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">{t("searchButtonNav")}</Button>
-          </Form>
         </Navbar.Collapse>
       </Container>
     </Navbar>

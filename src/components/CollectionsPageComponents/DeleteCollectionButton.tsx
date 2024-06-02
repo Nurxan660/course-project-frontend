@@ -14,6 +14,7 @@ const DeleteCollectionButton = () => {
   const handleDeleteCollection = async () => {
     if (!paginationStore) return;
     await DeleteCollectionStore.deleteCollection(notifySuccess, notifyError, t, paginationStore);
+    DeleteCollectionStore.setCheckedItems([]);
   };
 
   return (

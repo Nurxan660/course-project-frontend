@@ -6,7 +6,7 @@ import { Id } from "react-toastify";
 class AdminStore {
   userListReponse: UserListResponse = {
     totalItems: 0,
-    users: []
+    users: [],
   };
   checkedUsers: number[] = [];
   isAction: boolean = false;
@@ -39,28 +39,41 @@ class AdminStore {
     }
   };
 
-  handleBlockUser = async (status: boolean, notifySuccess: (message: string) => Id) => {
+  handleBlockUser = async (
+    status: boolean,
+    notifySuccess: (message: string) => Id
+  ) => {
     try {
       const res = await updateUserBlockedStatus(status, this.checkedUsers);
       this.setIsAction(!this.isAction);
       notifySuccess(res.data.message);
-    } catch (e) { }
-  }
+    } catch (e) {}
+  };
 
   handleDeleteUser = async (notifySuccess: (message: string) => Id) => {
     try {
       const res = await deleteUsers(this.checkedUsers);
       this.setIsAction(!this.isAction);
       notifySuccess(res.data.message);
-    } catch (e) { }
-  }
+    } catch (e) {}
+  };
 
-  handleChangeUserRole = async (role: string, notifySuccess: (message: string) => Id) => {
+  handleChangeUserRole = async (
+    role: string,
+    notifySuccess: (message: string) => Id
+  ) => {
     try {
       const res = await changeUserRole(this.checkedUsers, role);
       this.setIsAction(!this.isAction);
       notifySuccess(res.data.message);
-    } catch (e) { }
-  }
+    } catch (e) {}
+  };
+
+  areAllUsersChecked = () => {
+    return (
+      this.checkedUsers.length === this.userListReponse.users.length &&
+      this.userListReponse.users.length > 0
+    );
+  };
 }
 export default new AdminStore
