@@ -28,7 +28,8 @@ axiosInstance.interceptors.response.use(
     const tokenObj = getTokens();
     if (tokenObj?.token && !isOpenApiPath(config.url) && err.response?.status === 401 && !config._retry) {
       config._retry = true;
-      return handleRefreshToken(config);
+      await handleRefreshToken(config);
+      return axiosInstance(config);
     }
     handleAnotherStatus(err);
   return Promise.reject(err);

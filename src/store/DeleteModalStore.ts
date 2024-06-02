@@ -1,5 +1,4 @@
 import { makeAutoObservable } from "mobx"
-import CollectionStore from "./DeleteCollectionStore";
 
 class DeleteModalStore {
   showModal: boolean = false;
@@ -10,13 +9,7 @@ class DeleteModalStore {
     makeAutoObservable(this);
   }
 
-  openModal(onDeleteCallback: () => void, collectionId: number) {
-    this.showModal = true;
-    CollectionStore.setCollectionId(collectionId)
-    this.onDeleteCallback = onDeleteCallback;
-  }
-
-  openModalForDeleteItem(onDeleteCallback: () => void) {
+  openModal(onDeleteCallback: () => void) {
     this.showModal = true;
     this.onDeleteCallback = onDeleteCallback;
   }

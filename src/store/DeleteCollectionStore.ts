@@ -15,6 +15,7 @@ class CollectionStore {
   loading: boolean = true;
   collectionId: number | null = null;
   isDeleted: boolean = false;
+  checkedItems: number[] = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -44,24 +45,20 @@ class CollectionStore {
   ) {
     try {
       DeleteModalStore.setLoading(true);
-      await this.performDelete(notifySuccess, store);
+      const res = await deleteCollection(this.checkedItems);
+      this.handleSuccessDelete(res, notifySuccess, store);
     } catch (e) { notifyError(t("unexpectedError")) }
     DeleteModalStore.setLoading(false);
   }
 
-  private async performDelete(notifySuccess: (message: string) => Id, store: PaginationStore) {
-    if (!this.collectionId) return;
-    const res = await deleteCollection(this.collectionId);
-    this.handleSuccessDelete(res, notifySuccess);
-    this.adjustCurrentPageAfterDeletion(store);
-  }
-
   handleSuccessDelete(
     res: AxiosResponse<any, any>,
-    notifySuccess: (message: string) => Id
+    notifySuccess: (message: string) => Id,
+    store: PaginationStore
   ) {
     this.setIsDeleted();
     DeleteModalStore.closeModal();
+    this.adjustCurrentPageAfterDeletion(store);
     notifySuccess(res.data?.message);
   }
 
@@ -72,17 +69,12 @@ class CollectionStore {
   ) {
     try {
       this.setLoading(true);
-      await this.loadCollections(store);
-    } catch {
-      notifyError(t("unexpectedError"));
-    }
+      const res = await getCollections(store?.page || 1);
+      this.handleSuccessGetCollections(store, res);
+    } catch (e) { notifyError('unexpectedError') }
     this.setLoading(false);
   }
 
-  private async loadCollections(store: PaginationStore | null) {
-    const res = await getCollections(store?.page || 1);
-    this.handleSuccessGetCollections(store, res);
-  }
 
   private handleSuccessGetCollections(
     store: PaginationStore | null,
@@ -98,5 +90,21 @@ class CollectionStore {
       store.setPage(store.page - 1);
     }
   }
+
+  handleCheckChange = (id: number) => {
+    if (this.checkedItems.includes(id)) {
+      this.checkedItems = this.checkedItems.filter((id) => id !== id);
+    } else {
+      this.checkedItems.push(id);
+    }
+  };
+
+  handleCheckAll = () => {
+    if (this.checkedItems.length === this.collections.length) {
+      this.checkedItems = [];
+    } else {
+      this.checkedItems = this.collections.map((collection) => collection.id);
+    }
+  };
 }
 export default new CollectionStore

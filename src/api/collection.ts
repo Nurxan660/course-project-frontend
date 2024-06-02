@@ -22,9 +22,9 @@ const getCollections = async (page: number) => {
     );
 };
 
-const deleteCollection = async (collectionId: number) => {
-    return axiosInstance.delete(
-      API_URL + `/api/collections/delete?collectionId=${collectionId}`
+const deleteCollection = async (ids: number[]) => {
+    return axiosInstance.post(
+      API_URL + `/api/collections/delete`, { ids }
     );
 };
 

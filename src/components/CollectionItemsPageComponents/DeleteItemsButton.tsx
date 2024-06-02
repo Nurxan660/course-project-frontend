@@ -26,7 +26,7 @@ const DeleteItemsButton = observer(() => {
           variant="danger"
           disabled={checkedItems.length > 0 ? false : true}
           onClick={() =>
-            DeleteModalStore.openModalForDeleteItem(handleDeleteItem)
+            DeleteModalStore.openModal(handleDeleteItem)
           }
         >
           {t('deleteButton')}
