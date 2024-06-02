@@ -66,17 +66,16 @@ const checkStatus = (err: any, status: number) => {
 const handleRefreshToken = async (originalConfig: any) => {
   try {
     const res = await refreshToken(getTokens()?.refreshToken)
-    handleSuccessRefreshToken(res, originalConfig);
+    handleSuccessRefreshToken(res);
   } catch (error) {
     handleFailedRefreshToken();
     return Promise.reject(error);
   }
 }
 
-const handleSuccessRefreshToken = (res: AxiosResponse<Token, any>, originalConfig: any) => {
+const handleSuccessRefreshToken = (res: AxiosResponse<Token, any>) => {
   updateAccessToken(res.data.token);
   updateRefreshToken(res.data.refreshToken);
-  return axiosInstance(originalConfig);
 };
 
 export {

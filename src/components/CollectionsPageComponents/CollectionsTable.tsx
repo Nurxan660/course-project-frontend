@@ -1,9 +1,8 @@
-import { Table, Spinner } from 'react-bootstrap'
+import { Table, Form } from 'react-bootstrap'
 import { usePaginationStore } from '../../context/StoreContext';
 import { useEffect } from 'react';
 import CollectionStore from '../../store/DeleteCollectionStore';
 import { observer } from 'mobx-react-lite';
-import DeleteModalStore from '../../store/DeleteModalStore';
 import { ToastContainer, toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
@@ -12,7 +11,6 @@ import TableSpinner from '../Common/TableSpinner';
 
 const CollectionsTable = observer(() => {
   const store = usePaginationStore();
-  const notifySuccess = (message: string) => toast.success(message);
   const notifyError = (message: string) => toast.error(message);
   const { t } = useTranslation();
 
@@ -24,27 +22,29 @@ const CollectionsTable = observer(() => {
     loadCollection()
   }, [store?.page, CollectionStore.isDeleted])
 
-  const handleDeleteCollection = async () => {
-    if(!store) return
-    CollectionStore.deleteCollection(notifySuccess, notifyError, t, store);
-  }
-
   return (
     <>
       <Table striped bordered hover size="sm">
         <thead>
-          <tr>
-            <th>{t('nameLabel')}</th>
-            <th>{t('categoryLabel')}</th>
-            <th>{t('action')}</th>
+          <tr className="text-center align-middle">
+          <th><Form.Check onClick={() => CollectionStore.handleCheckAll()} /></th>
+            <th>{t("nameLabel")}</th>
+            <th>{t("categoryLabel")}</th>
+            <th>{t("action")}</th>
           </tr>
         </thead>
         <tbody>
           {CollectionStore.loading ? (
-            <TableSpinner />
+            <TableSpinner colspan={4} />
           ) : (
             CollectionStore.collections.map((v) => (
               <tr key={v.id}>
+                <td className="text-center align-middle">
+                  <Form.Check
+                    checked={CollectionStore.checkedItems.includes(v.id)}
+                    onChange={() => CollectionStore.handleCheckChange(v.id)}
+                  />
+                </td>
                 <td className="cursor-pointer">
                   <Link to={`/collections/${v.id}`} className="color-black">
                     <span>{v.name}</span>
@@ -52,10 +52,6 @@ const CollectionsTable = observer(() => {
                 </td>
                 <td>{v.category}</td>
                 <td className="center-icons">
-                  <i
-                    className="bi bi-trash cursor-pointer"
-                    onClick={() => DeleteModalStore.openModal(handleDeleteCollection, v.id)}
-                  ></i>
                   <Link
                     to={`/collections/edit/${v.id}`}
                     style={{ color: "black" }}
