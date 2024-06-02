@@ -28,12 +28,15 @@ const AdminTable = observer(() => {
       <thead>
         <tr>
           <th>
-            <Form.Check onClick={() => AdminStore.handleUserCheckAll()} />
+            <Form.Check
+              onClick={() => AdminStore.handleUserCheckAll()}
+              checked={AdminStore.areAllUsersChecked()}
+            />
           </th>
-          <th>{t('nameLabel')}</th>
-          <th>{t('emailLabel')}</th>
-          <th>{t('adminLabel')}</th>
-          <th>{t('blockedLabel')}</th>
+          <th>{t("nameLabel")}</th>
+          <th>{t("emailLabel")}</th>
+          <th>{t("adminLabel")}</th>
+          <th>{t("blockedLabel")}</th>
         </tr>
       </thead>
       <tbody>

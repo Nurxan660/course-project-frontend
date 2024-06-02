@@ -16,7 +16,8 @@ const DeleteItemsButton = observer(() => {
   
   const handleDeleteItem = async () => {
     if (!paginationStore) return;
-    DeleteItemStore.deleteItem(notifySuccess, notifyError, t, paginationStore);
+    await DeleteItemStore.deleteItem(notifySuccess, notifyError, t, paginationStore);
+    ItemListStore.setCheckedItems([]);
   };
 
   return (

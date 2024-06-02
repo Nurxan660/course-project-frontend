@@ -38,12 +38,23 @@ class ItemListStore {
     }
   };
 
+  areAllItemsChecked = () => {
+    return (
+      this.checkedItems.length === this.items.items.length &&
+      this.items.items.length > 0
+    );
+  }
+
   setItems(items: PaginationItemListResponse) {
     this.items = items;
   }
 
   setCollection(collection: BasicCollectionData) {
     this.collection = collection;
+  }
+  
+  setCheckedItems(checkedItems: number[]) {
+    this.checkedItems = checkedItems;
   }
 
   setLoading(loading: boolean) {

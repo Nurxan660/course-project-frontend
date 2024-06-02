@@ -113,3 +113,21 @@ h2 {
 .container-min-height {
     height: 100%;
 }
+
+.search-container {
+    position: relative;
+}
+
+.search-container .list-group {
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+}
+
+.search-list-item {
+    cursor: pointer;
+}
+
+.search-list-item:hover {
+    background-color: #edeff1;
+}

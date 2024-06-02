@@ -27,7 +27,12 @@ const CollectionsTable = observer(() => {
       <Table striped bordered hover size="sm">
         <thead>
           <tr className="text-center align-middle">
-          <th><Form.Check onClick={() => CollectionStore.handleCheckAll()} /></th>
+            <th>
+              <Form.Check
+                onClick={() => CollectionStore.handleCheckAll()}
+                checked={CollectionStore.areAllCollectionsChecked()}
+              />
+            </th>
             <th>{t("nameLabel")}</th>
             <th>{t("categoryLabel")}</th>
             <th>{t("action")}</th>

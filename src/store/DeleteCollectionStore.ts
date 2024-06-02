@@ -21,8 +21,19 @@ class CollectionStore {
     makeAutoObservable(this);
   }
 
+  areAllCollectionsChecked = () => {
+    return (
+      this.checkedItems.length === this.collections.length &&
+      this.collections.length > 0
+    );
+  }
+
   setCollections(collections: Collection[]) {
     this.collections = collections;
+  }
+
+  setCheckedItems(checkedItems: number[]) {
+    this.checkedItems = checkedItems;
   }
 
   setLoading(isLoading: boolean) {
