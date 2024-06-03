@@ -85,5 +85,6 @@
     "likesLabel": "polubień",
     "homeNavigationName": "Strona główna",
     "noDescriptionLabel": "Bez opisu",
-    "itemNavigationName": "Przedmiot"
+    "itemNavigationName": "Przedmiot",
+    "popularTagsLabel": "Popularne tagi"
 }

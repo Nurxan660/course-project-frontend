@@ -85,6 +85,6 @@
     "likesLabel": "лайков",
     "homeNavigationName": "Главная страница",
     "noDescriptionLabel": "Описание отсутствует",
-    "itemNavigationName": "Предмет"
-
+    "itemNavigationName": "Предмет",
+    "popularTagsLabel": "Популярные тэги"
 }
