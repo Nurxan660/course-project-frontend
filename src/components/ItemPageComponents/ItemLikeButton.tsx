@@ -4,10 +4,12 @@ import ItemStore from '../../store/ItemStore';
 import { toggleLike } from '../../api/likes';
 import { useParams } from 'react-router-dom';
 import { getTokens } from '../../service/utils/authUtils';
+import { useTranslation } from 'react-i18next';
 
 const ItemLikeButton = observer(() => {
   const params = useParams();
   const currentUser = getTokens();
+  const { t } = useTranslation();
 
   const handleToggleLike = async () => {
     try {
@@ -25,7 +27,7 @@ const ItemLikeButton = observer(() => {
           style={{ color: ItemStore.liked ? "red" : "gray" }}
         ></i>
       </Button>
-      <span>{ItemStore.item.likesCount}</span>
+      <span>{ItemStore.item.likesCount} {t('likesLabel')}</span>
     </div>
   );
 })

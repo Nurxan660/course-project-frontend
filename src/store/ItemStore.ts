@@ -5,7 +5,8 @@ class ItemStore {
   item: ItemWithLikesResponse = {
     name: '',
     likesCount: 0,
-    customFields: []
+    customFields: [],
+    liked: false
   }
   loading: boolean = true;
   liked: boolean = false;
