@@ -81,5 +81,9 @@
     "date": "date",
     "action": "Action",
     "namePlaceholder": "Enter name",
-    "tagsPlaceholder": "Select tags"
+    "tagsPlaceholder": "Select tags",
+    "likesLabel": "likes",
+    "homeNavigationName": "Home",
+    "noDescriptionLabel": "No description",
+    "itemNavigationName": "Item"
 }

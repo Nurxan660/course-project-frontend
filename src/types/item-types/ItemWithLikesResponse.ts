@@ -8,7 +8,8 @@ interface CustomField {
 interface ItemWithLikesResponse {
     name: string;
     likesCount: number;
-    customFields: CustomField[]
+    customFields: CustomField[];
+    liked: boolean;
   }
   export type { ItemWithLikesResponse };
   

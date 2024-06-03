@@ -10,12 +10,13 @@ import BreadcumbNavigation from '../components/Common/BreadcrumbNavigation'
 
 const CollectionItemsPage = () => {
   const currentUser = getTokens();
+
   return (
     <div className="p-2 h-100">
       <StoreProvider>
         <BreadcumbNavigation
-          linkToPage="/collections"
-          firstLink="collectionsNavigationName"
+          linkToPage={currentUser ? "/collections" : "/"}
+          firstLink={currentUser ? "collectionsNavigationName" : "homeNavigationName"}
           currentLink="itemsNavigationName"
         />
         <CollectionCard />

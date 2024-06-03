@@ -35,7 +35,7 @@ const searchItems = async (term: string) => {
 
 const getItemWithLikes = async (itemId: number) => {
   return axiosInstance.get<ItemWithLikesResponse>(
-    API_URL + `/open-api/item/get/item?itemId=${itemId}`
+    API_URL + `/api/item/get/item?itemId=${itemId}`
   );
 };
 

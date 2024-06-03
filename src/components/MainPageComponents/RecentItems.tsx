@@ -4,7 +4,6 @@ import { getLastAddedItems } from "../../api/item";
 import { useEffect, useState } from "react";
 import { LastAddedItemsResponse } from "../../types/item-types/LastAddedItemsResponse";
 import CardPlaceholder from "./CardPlaceholder";
-import { Link } from "react-router-dom";
 import NotFoundComponent from "../Common/NotFoundComponent";
 
 const RecentItems = () => {
@@ -43,9 +42,9 @@ const RecentItems = () => {
                     <br />
                     {t("authorLabel")}: {item.fullName}
                   </Card.Text>
-                  <Link to={`collections/${item.collectionId}/item/${item.id}`}>
+                  <a href={`collections/${item.collectionId}/item/${item.id}`}>
                   <Button variant="primary">{t("openItemButton")}</Button>
-                  </Link>
+                  </a>
                 </Card.Body>
               </Card>
             </Col>

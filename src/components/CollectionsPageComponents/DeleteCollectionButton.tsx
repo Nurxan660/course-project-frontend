@@ -22,7 +22,7 @@ const DeleteCollectionButton = () => {
       variant="danger ml-10 mt-5"
       onClick={() => DeleteModalStore.openModal(handleDeleteCollection)}
     >
-      Delete
+      {t('deleteButton')}
     </Button>
   );
 };

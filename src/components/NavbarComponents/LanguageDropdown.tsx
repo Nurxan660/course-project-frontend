@@ -20,8 +20,9 @@ const LanguageDropdown = () => {
       id="collapsible-nav-dropdown"
       onSelect={handleSelect}
     >
-      <NavDropdown.Item eventKey="uz|Uzbek">Uzbek</NavDropdown.Item>
+      <NavDropdown.Item eventKey="pl|Polish">Polish</NavDropdown.Item>
       <NavDropdown.Item eventKey="en|English">English</NavDropdown.Item>
+      <NavDropdown.Item eventKey="ru|Russian">Russian</NavDropdown.Item>
     </NavDropdown>
   );
 };
