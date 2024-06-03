@@ -85,5 +85,6 @@
     "likesLabel": "likes",
     "homeNavigationName": "Home",
     "noDescriptionLabel": "No description",
-    "itemNavigationName": "Item"
+    "itemNavigationName": "Item",
+    "popularTagsLabel": "Popular tags"
 }
