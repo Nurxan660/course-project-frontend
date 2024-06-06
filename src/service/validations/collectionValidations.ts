@@ -6,6 +6,7 @@ const createCollectionSchema = (t: TFunction<"translation", undefined>) =>
     name: yup.string().required(t("fieldRequired")),
     category: yup.string().required(t("fieldRequired")),
     description: yup.string().required(t("fieldRequired")),
+    public: yup.boolean().required(t("fieldRequired")),
 });
 
 export {createCollectionSchema}

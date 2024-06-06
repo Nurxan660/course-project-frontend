@@ -37,6 +37,7 @@ class CollectionFormStore {
       category: '',
       description: '',
       imageUrl: '',
+      public: false,
       customFields: []
     }
   }
