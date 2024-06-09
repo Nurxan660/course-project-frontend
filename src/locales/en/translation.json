@@ -86,5 +86,18 @@
     "homeNavigationName": "Home",
     "noDescriptionLabel": "No description",
     "itemNavigationName": "Item",
-    "popularTagsLabel": "Popular tags"
+    "popularTagsLabel": "Popular tags",
+    "collectionPlaceholder": "Enter collection name",
+    "descriptionPlaceholder": "Enter description",
+    "helpHeader": "Support ticket",
+    "priorityLabel": "Priority",
+    "priorityPlaceholder": "Select priority",
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low",
+    "createTicketError": "Error while creating ticket, please try again later",
+    "helpNavigationName": "Help",
+    "createTicketLabel": "Create ticket",
+    "allTicketsLabel": "All tickets",
+    "loginMessage": "Please login to continue"
 }

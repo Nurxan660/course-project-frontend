@@ -86,5 +86,18 @@
     "homeNavigationName": "Strona główna",
     "noDescriptionLabel": "Bez opisu",
     "itemNavigationName": "Przedmiot",
-    "popularTagsLabel": "Popularne tagi"
+    "popularTagsLabel": "Popularne tagi",
+    "collectionPlaceholder": "Wpisz nazwę kolekcji",
+    "descriptionPlaceholder": "Wprowadź opis",
+    "helpHeader": "Zgłoszenie serwisowe",
+    "priorityLabel": "Priorytet",
+    "priorityPlaceholder": "Wybierz priorytet",
+    "high": "Wysoki",
+    "medium": "Średni",
+    "low": "Niski",
+    "createTicketError": "Błąd podczas tworzenia zgłoszenia. Spróbuj ponownie później",
+    "helpNavigationName": "Pomoc",
+    "createTicketLabel": "Utwórz bilet",
+    "allTicketsLabel": "Wszystkie bilety",
+    "loginMessage": "Proszę się zalogować, aby kontynuować"
 }
