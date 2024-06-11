@@ -6,6 +6,7 @@ import { getTokens, removeTokens } from '../service/utils/authUtils';
 import { logout } from '../api/auth';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import LiveSearch from './LiveSearchComponents/LiveSearch';
+import HelpDropdown from './NavbarComponents/HelpDropdown';
 
 const NavbarComponent = () => {
   const { t } = useTranslation();
@@ -36,11 +37,11 @@ const NavbarComponent = () => {
           >
             {user && (
               <Nav.Item className="d-flex align-items-center">
-              <i className="bi bi-person-circle fs-3"></i>
-              <span className='ml-5'>{user?.fullName}</span>
-            </Nav.Item>
+                <i className="bi bi-person-circle fs-3"></i>
+                <span className="ml-5">{user?.fullName}</span>
+              </Nav.Item>
             )}
-            <Nav.Link className='ml-5'>
+            <Nav.Link className="ml-5">
               {!user && (
                 <Link to="/register" className="custom-link">
                   {t("registerNavbar")}
@@ -61,6 +62,7 @@ const NavbarComponent = () => {
 
             <LiveSearch />
           </Nav>
+            <HelpDropdown />
         </Navbar.Collapse>
       </Container>
     </Navbar>

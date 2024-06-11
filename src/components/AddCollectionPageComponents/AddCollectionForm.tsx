@@ -1,4 +1,4 @@
-import { Container, Form, FormGroup, Button, Row, Spinner } from "react-bootstrap"
+import { Container, Form, FormGroup, Button, Row, Spinner, FormCheck } from "react-bootstrap"
 import { useTranslation } from "react-i18next";
 import { useForm} from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -42,6 +42,7 @@ const AddCollectionForm = observer(({getRootProps, getInputProps, acceptedFiles,
             <CategoryNameComponent register={register} errors={errors} />
             <CategorySelectComponent register={register} errors={errors} />
           </Row>
+          <FormCheck label="isPublic" {...register("public")}/>
           <CategoryDescriptionComponent
             register={register}
             errors={errors}

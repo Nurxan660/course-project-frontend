@@ -19,6 +19,8 @@ import PrivateUserRoute from "./pages/private-routes/PrivateUserRoute";
 import NotFoundPage from "./pages/NotFoundPage";
 import AdminPage from "./pages/AdminPage";
 import PrivateAdminRoute from "./pages/private-routes/PrivateAdminRoute";
+import HelpPage from "./pages/HelpPage";
+import UserTicketsPage from "./pages/UserTicketsPage";
 
 function App() {
   const { i18n } = useTranslation()
@@ -33,6 +35,8 @@ function App() {
         <Route path="/register" element={<Registration />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<HomePage />} />
+        <Route path="/help" element={<HelpPage />} />
+        <Route path="/tickets" element={<UserTicketsPage />} />
         <Route path="*" element={<NotFoundPage />} />
         <Route
           path="/admin"

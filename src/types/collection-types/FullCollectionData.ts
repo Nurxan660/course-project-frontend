@@ -5,6 +5,7 @@ interface FullCollectionData {
     category: string;
     description: string;
     imageUrl: string;
+    public: boolean;
     customFields: CustomField[];
   }
   export type { FullCollectionData };

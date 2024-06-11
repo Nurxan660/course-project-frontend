@@ -86,5 +86,18 @@
     "homeNavigationName": "Главная страница",
     "noDescriptionLabel": "Описание отсутствует",
     "itemNavigationName": "Предмет",
-    "popularTagsLabel": "Популярные тэги"
+    "popularTagsLabel": "Популярные тэги",
+    "collectionPlaceholder": "Введите имя коллекции",
+    "descriptionPlaceholder": "Введите описание",
+    "helpHeader": "Заявка в службу поддержки",
+    "priorityLabel": "Приоритет",
+    "priorityPlaceholder": "Выберите приоритет",
+    "high": "Высокий",
+    "medium": "Средний",
+    "low": "Низкий",
+    "createTicketError": "Ошибка при создании заявки, повторите попытку чуть позже",
+    "helpNavigationName": "Помощь",
+    "createTicketLabel": "Создать заявку",
+    "allTicketsLabel": "Все заявки",
+    "loginMessage": "Пожалуйста войдите для того , чтобы продолжить"
 }
